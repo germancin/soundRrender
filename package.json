@@ -1,18 +1,19 @@
 {
-  "name": "soundrrender",
-  "private": true,
-  "version": "0.0.0",
+  "name": "nawrrenda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/germancin/soundrrender.git"
   },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^1.0.7",
-    "vite": "^2.8.0"
-  }
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/germancin/soundrrender/issues"
+  },
+  "homepage": "https://github.com/germancin/soundrrender#readme"
 }
