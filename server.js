@@ -1,4 +1,4 @@
-// const portAudio = require("naudiodon");
+const portAudio = require("naudiodon");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -24,7 +24,6 @@ server.get("/", (req, res) => {
 			error: error.message,
 		});
 	}
-	
 });
 
 server.listen(port, (err) => {
