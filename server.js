@@ -5,15 +5,17 @@ const port = 5000;
 const fs = require("fs");
 
 const server = express();
-
+server.use(bodyParser.json());
+server.use(cors());
 
 server.post("/", (req, res) => {
 	
-	console.log("Req::", req)
+	console.log("Req::", req.body);
+
 	res.status(200).json({
 		message: "Ok"
 	});
-	
+
 });
 
 server.listen(port, (err) => {
