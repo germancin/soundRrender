@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const port = 8000;
 const fs = require("fs");
+const spawn = require("child_process").spawn;
 
 const server = express();
 server.use(bodyParser.json());
@@ -13,7 +14,7 @@ server.get("/", (req, res) => {
 
 		res.status(200).json({
 			message: "Ok",
-			payload: "--",
+			payload: JSON.stringify(spawn),
 		});
 		
 	} catch (error) {
