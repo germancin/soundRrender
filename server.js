@@ -1,3 +1,4 @@
+const portAudio = require("naudiodon");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -9,13 +10,21 @@ server.use(bodyParser.json());
 server.use(cors());
 
 server.get("/", (req, res) => {
+	try {
+
+		console.log(portAudio.getHostAPIs());
+
+		res.status(200).json({
+			message: "Ok",
+			payload: portAudio.getHostAPIs(),
+		});
+		
+	} catch (error) {
+		res.status(500).json({
+			error: error.message,
+		});
+	}
 	
-	console.log("Req::", req.body);
-
-	res.status(200).json({
-		message: "Ok"
-	});
-
 });
 
 server.listen(port, (err) => {
