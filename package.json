@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/germancin/soundrrender/issues"
   },
-  "homepage": "https://github.com/germancin/soundrrender#readme"
+  "homepage": "https://github.com/germancin/soundrrender#readme",
+  "dependencies": {
+    "naudiodon": "^2.3.6"
+  }
 }
