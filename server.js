@@ -13,6 +13,12 @@ server.use(cors());
 server.get("/", (req, res) => {
 	try {
 
+		gpio.setup(pin, gpio.DIR_OUT, function (err) {
+			gpio.read(pin, function (err, value) {
+				console.log(value);
+			});
+		});
+
 		res.status(200).json({
 			message: "Ok",
 			payload: JSON.stringify(spawn),
