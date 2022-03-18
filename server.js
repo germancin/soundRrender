@@ -14,8 +14,9 @@ server.use(cors());
 server.get("/", (req, res) => {
 	try {
 
-		gpio.setup(pin, gpio.DIR_OUT).then((err) => {
-			console.log("SETUP");
+		console.log("SETUP", gpio);
+		gpio.setup(pin, gpio.DIR_INPUT).then((err) => {
+			
 			gpio.read(pin, function (err, value) {
 				console.log(value);
 			});
