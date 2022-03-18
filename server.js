@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const port = 8000;
+const pin = 17;
 const fs = require("fs");
 const spawn = require("child_process").spawn;
 const gpio = require('rpi-gpio');
