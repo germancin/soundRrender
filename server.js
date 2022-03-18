@@ -14,17 +14,16 @@ server.use(cors());
 server.get("/", (req, res) => {
 	try {
 
-		console.log("SETUP", gpio);
-		gpio.setup(pin, gpio.DIR_INPUT).then((err) => {
-			
-			try{
+		console.log("SETUP", gpio.DIR_IN);
+		gpio.setup(pin, gpio.DIR_IN).then((err) => {
+			try {
 				gpio.read(pin, function (err, value) {
 					console.log(value);
 				});
-			}catch(err){
-				console.log(err)
+			} catch (err) {
+				console.log(err);
 			}
-		})
+		});
 
 		res.status(200).json({
 			message: "Ok",
