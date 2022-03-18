@@ -5,7 +5,7 @@ const port = 8000;
 const pin = 17;
 const fs = require("fs");
 const spawn = require("child_process").spawn;
-const gpio = require('rpi-gpio');
+const gpio = require("rpi-gpio").promise;
 
 const server = express();
 server.use(bodyParser.json());
@@ -14,12 +14,12 @@ server.use(cors());
 server.get("/", (req, res) => {
 	try {
 
-		gpio.setup(pin, gpio.DIR_IN, function (err) {
-			console.log("SETUP")
+		gpio.setup(pin, gpio.DIR_OUT).then((err) => {
+			console.log("SETUP");
 			gpio.read(pin, function (err, value) {
 				console.log(value);
 			});
-		});
+		})
 
 		res.status(200).json({
 			message: "Ok",
