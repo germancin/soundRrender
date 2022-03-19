@@ -119,7 +119,7 @@ server.get("/listen", (req, res) => {
 
 		const  handleSoundStream = (stream) => {
 			streamArray.push(stream);
-			console.log(streamArray, streamArray.length);
+			console.log(streamArray.length);
 		}
 
 	} catch (error) {
