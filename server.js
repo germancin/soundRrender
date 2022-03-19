@@ -5,7 +5,7 @@ const port = 8000;
 const fs = require("fs");
 const spawn = require("child_process").spawn;
 const gpio = require("rpi-gpio");
-const channel = 11; // which is GPIO17 that is used in python.
+const channel = 17; // which is GPIO17 that is used in python.
 const server = express();
 server.use(bodyParser.json());
 server.use(cors());
@@ -54,16 +54,28 @@ server.get("/listen", (req, res) => {
 				gpio.on("change", function (channel, changedValue) {
 					console.log("CHANGED::" + changedValue);
 
+					
+					if (err) {
+						console.log("errors", err.message)
+						res.status(500).json({
+							ping: "node Response.",
+							message: "Error: " + err,
+						});
+					}
+
 					gpio.read(channel, function (err, value) {
 						if (err) {
 							console.log("Error Reading:", err.message);
 							return;
 						}
 
-						changedValue && value && console.log("----------" + value);
+						changedValue &&
+							value &&
+							console.log("----------" + value);
 					});
 				});
 
+				
 			}catch(error){
 				console.log("error", error)
 			}
@@ -75,7 +87,7 @@ server.get("/listen", (req, res) => {
 		
 		
 		// res.status(200).json({
-		// 	message: "node Response.",
+		// 	ping: "node Response.",
 		// 	payload: "",
 		// });
 	} catch (error) {
