@@ -50,12 +50,9 @@ server.get("/listen", (req, res) => {
 		function readInput(err) {
 			try{
 
-				console.log("pillup");
-		
+				console.log("Listening...");
 
-				// gpio.on("change", function (channel, value) {
-
-				// 	console.log("The value changed " + value);
+				setInterval(function () {
 
 					gpio.read(channel, function (err, value) {
 						if (err) {
@@ -63,9 +60,25 @@ server.get("/listen", (req, res) => {
 							return;
 						}
 
-						console.log("The value is " + value);
+						console.log("READING::::" + value);
 					});
-				// });
+
+				}, 500);
+		
+
+				gpio.on("change", function (channel, value) {
+
+					console.log("::CHANGED::" + value);
+
+					// gpio.read(channel, function (err, value) {
+					// 	if (err) {
+					// 		console.log("Error Reading:", err.message);
+					// 		return;
+					// 	}
+
+					// 	console.log("The value is " + value);
+					// });
+				});
 
 
 			}catch(error){
