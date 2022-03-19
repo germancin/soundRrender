@@ -57,14 +57,14 @@ server.get("/listen", (req, res) => {
 
 					console.log("The value changed " + value);
 
-					gpio.read(channel, function (err, value) {
-						if (err) {
-							console.log("Error Reading:", err.message);
-							return;
-						}
+					// gpio.read(channel, function (err, value) {
+					// 	if (err) {
+					// 		console.log("Error Reading:", err.message);
+					// 		return;
+					// 	}
 
-						console.log("The value is " + value);
-					});
+					// 	console.log("The value is " + value);
+					// });
 				});
 
 
