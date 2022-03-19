@@ -68,7 +68,7 @@ server.get("/listen", (req, res) => {
 					gpio.read(17, function (err, value) {
 						if (err) {
 							if (err) {
-								console.log("Error event", err);
+								console.log("Error event", err.message);
 								res.status(500).json({
 									ping: channel,
 									message: err,
