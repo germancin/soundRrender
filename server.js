@@ -112,7 +112,7 @@ server.get("/listen", (req, res) => {
 
 			toleranceVal = toleranceVal + value;
 
-			if (toleranceVal > volume + 999 && !sounded){
+			if (toleranceVal > volume + 999 && sounded === false){
 				console.log("YOU ARE TALKING TOO HIGH !!!!", toleranceVal);
 				sounded = true;
 
