@@ -52,7 +52,7 @@ server.get("/listen", (req, res) => {
 				console.log("Listening...");
 
 				if (err) {
-					console.log('Error listening', err);
+					console.log("Error listening", err);
 					res.status(500).json({
 						ping: channel,
 						message: err,
@@ -61,9 +61,6 @@ server.get("/listen", (req, res) => {
 
 				gpio.on("change", function (channel, changedValue) {
 					console.log("CHANGED::" + changedValue);
-
-					
-					
 
 					gpio.read(channel, function (err, value) {
 						if (err) {
@@ -78,25 +75,33 @@ server.get("/listen", (req, res) => {
 
 						changedValue &&
 							value &&
-							console.log("----------" + value);
+							handleSoundSteam(value);
 					});
 				});
 
-				
+				res.status(200).json({
+					ping: channel,
+					messge: "The sensor started listening succesfully.",
+				});
 			}catch(error){
 				console.log("error", error)
+				res.status(500).json({
+					ping: channel,
+					message: err.message,
+				});
 			}
 			
+		}
+
+		function handleSoundSteam(stream){
+			console.log(stream);
 		}
 
 		console.log("got inside listen");
 
 		
 		
-		// res.status(200).json({
-		// 	ping: "node Response.",
-		// 	payload: "",
-		// });
+		
 	} catch (error) {
 		res.status(500).json({
 			error: error.message,
