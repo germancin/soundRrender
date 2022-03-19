@@ -54,6 +54,9 @@ server.get("/listen", (req, res) => {
 		
 
 				gpio.on("change", function (channel, value) {
+
+					console.log("The value changed " + value);
+
 					gpio.read(channel, function (err, value) {
 						if (err) {
 							console.log("Error Reading:", err.message);
@@ -64,10 +67,6 @@ server.get("/listen", (req, res) => {
 					});
 				});
 
-					
-
-
-				
 
 			}catch(error){
 				console.log("error", error)
