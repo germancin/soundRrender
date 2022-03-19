@@ -52,22 +52,21 @@ server.get("/listen", (req, res) => {
 
 				console.log("Listening...");
 
-				setInterval(function () {
 
-					gpio.on("change", function (channel, value) {
-						console.log("CHANGED::" + value);
+				gpio.on("change", function (channel, value) {
+					
+					!value && console.log("CHANGED::" + value);
 
-						gpio.read(channel, function (err, value) {
-							if (err) {
-								console.log("Error Reading:", err.message);
-								return;
-							}
+					gpio.read(channel, function (err, value) {
+						if (err) {
+							console.log("Error Reading:", err.message);
+							return;
+						}
 
-							console.log("----------" + value);
-						});
+						console.log("----------" + value);
 					});
+				});
 
-				}, 500);
 		
 
 				
