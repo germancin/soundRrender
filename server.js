@@ -94,7 +94,7 @@ server.get("/listen", (req, res) => {
 					// console.log("Current count Stream Values ", streamArray.length);
 
 					if(streamArray.length > 150) {
-						console.log("::::::GETTING  LOUGHT ", streamArray.length);
+						// console.log("::::::GETTING  LOUGHT ", streamArray.length);
 						tolerance(streamArray.length);
 					}
 
