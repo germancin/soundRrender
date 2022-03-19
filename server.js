@@ -99,7 +99,7 @@ server.get("/listen", (req, res) => {
 
 				setInterval(function () {
 					console.log("Tolerance got zero out!");
-					tolerance = 0;
+					toleranceVal = 0;
 				}, 2000);
 
 				res.status(200).json({
