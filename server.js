@@ -47,12 +47,12 @@ server.get("/listen", (req, res) => {
 	try {
 		let streamArray = [];
 		let toleranceVal = 0;
-
+		let sounded = false;
 		
 
 		const handleSoundStream = (stream) => {
 			streamArray.push(stream);
-			console.log(streamArray.length);
+			// console.log(streamArray.length);
 		};
 
 		const readInput = (err) => {
@@ -83,12 +83,11 @@ server.get("/listen", (req, res) => {
 					});
 				});
 
-				
-
 				res.status(200).json({
 					ping: channel,
 					messge: "The sensor started listening succesfully.",
 				});
+
 			}catch(error){
 				console.log("error", error)
 				res.status(500).json({
@@ -100,19 +99,29 @@ server.get("/listen", (req, res) => {
 		}
 
 		const tolerance = (value) => {
-			console.log(
-				"got inot tolerance method",
-				value,
-				"currrent tolerance",
-				toleranceVal
-			);
+			// console.log(
+			// 	"got inot tolerance method",
+			// 	value,
+			// 	"currrent tolerance",
+			// 	toleranceVal
+			// );
 
-			if (value > volume + 300) console.log("HOLD ON COW BOY ", value);
+			if (value > volume + 500 && value < toleranceVal) {
+				console.log("HOLD ON COW BOY ", value);
+			}
 
 			toleranceVal = toleranceVal + value;
 
-			if (toleranceVal > 999)
+			if (toleranceVal > 999 && !sounded){
 				console.log("YOU ARE TALKING TOO HIGH !!!!", toleranceVal);
+				sounded = true;
+
+				setInterval(function () {
+					// console.log("Tolerance got zero out!");
+					sounded = false;
+				}, 10000);
+			}
+				
 		};
 
 		setInterval(function () {
@@ -130,6 +139,9 @@ server.get("/listen", (req, res) => {
 			// console.log("Tolerance got zero out!");
 			toleranceVal = 0;
 		}, 5000);
+
+		
+		
 
 		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
