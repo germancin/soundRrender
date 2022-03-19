@@ -7,6 +7,7 @@ const spawn = require("child_process").spawn;
 const gpio = require("rpi-gpio");
 const channel = 11; // which is GPIO17 that is used in python.
 const server = express();
+const volume = 500;
 server.use(bodyParser.json());
 server.use(cors());
 
@@ -49,7 +50,12 @@ server.get("/listen", (req, res) => {
 
 		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
-		function readInput(err) {
+		const handleSoundStream = (stream) => {
+			streamArray.push(stream);
+			console.log(streamArray.length);
+		};
+
+		const readInput = (err) => {
 			try{
 				console.log("Listening...");
 
@@ -77,31 +83,7 @@ server.get("/listen", (req, res) => {
 					});
 				});
 
-				const tolerance = (value) => {
-					console.log( "got inot tolerance method", value, "currrent tolerance", toleranceVal );
-
-					if (value > 300) console.log("HOLD ON COW BOY ", value);
-
-					toleranceVal = toleranceVal + value;
-					
-					if (toleranceVal > 500) console.log("YOU ARE TALKING TOO HIGH !!!!");
-				}
-
-				setInterval(function () {
-					// console.log("Current count Stream Values ", streamArray.length);
-
-					if(streamArray.length > 150) {
-						// console.log("::::::GETTING  LOUGHT ", streamArray.length);
-						tolerance(streamArray.length);
-					}
-
-					streamArray = [];
-				}, 2000);
-
-				setInterval(function () {
-					// console.log("Tolerance got zero out!");
-					toleranceVal = 0;
-				}, 5000);
+				
 
 				res.status(200).json({
 					ping: channel,
@@ -117,10 +99,39 @@ server.get("/listen", (req, res) => {
 			
 		}
 
-		const  handleSoundStream = (stream) => {
-			streamArray.push(stream);
-			console.log(streamArray.length);
-		}
+		const tolerance = (value) => {
+			console.log(
+				"got inot tolerance method",
+				value,
+				"currrent tolerance",
+				toleranceVal
+			);
+
+			if (value > volume + 300) console.log("HOLD ON COW BOY ", value);
+
+			toleranceVal = toleranceVal + value;
+
+			if (toleranceVal > 999)
+				console.log("YOU ARE TALKING TOO HIGH !!!!", toleranceVal);
+		};
+
+		setInterval(function () {
+			// console.log("Current count Stream Values ", streamArray.length);
+
+			if (streamArray.length > volume) {
+				// console.log("::::::GETTING  LOUGHT ", streamArray.length);
+				tolerance(streamArray.length);
+			}
+
+			streamArray = [];
+		}, 2000);
+
+		setInterval(function () {
+			// console.log("Tolerance got zero out!");
+			toleranceVal = 0;
+		}, 5000);
+
+		
 
 	} catch (error) {
 		res.status(500).json({
