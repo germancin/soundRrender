@@ -54,31 +54,23 @@ server.get("/listen", (req, res) => {
 
 				setInterval(function () {
 
-					gpio.read(channel, function (err, value) {
-						if (err) {
-							console.log("Error Reading:", err.message);
-							return;
-						}
+					gpio.on("change", function (channel, value) {
+						console.log("CHANGED::" + value);
 
-						console.log("--------" + value);
+						gpio.read(channel, function (err, value) {
+							if (err) {
+								console.log("Error Reading:", err.message);
+								return;
+							}
+
+							console.log("----------" + value);
+						});
 					});
 
 				}, 500);
 		
 
-				gpio.on("change", function (channel, value) {
-
-					console.log("CHANGED::" + value);
-
-					// gpio.read(channel, function (err, value) {
-					// 	if (err) {
-					// 		console.log("Error Reading:", err.message);
-					// 		return;
-					// 	}
-
-					// 	console.log("The value is " + value);
-					// });
-				});
+				
 
 
 			}catch(error){
