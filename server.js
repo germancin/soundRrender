@@ -91,16 +91,17 @@ server.get("/listen", (req, res) => {
 					console.log("Current count Stream Values ", streamArray.length);
 
 					if(streamArray.length > 150) {
+						console.log("::::::GETTING  LOUGHT ", streamArray.length);
 						tolerance(streamArray.length);
 					}
 
 					streamArray = [];
-				}, 2000);
+				}, 1000);
 
 				setInterval(function () {
 					console.log("Tolerance got zero out!");
 					toleranceVal = 0;
-				}, 2000);
+				}, 5000);
 
 				res.status(200).json({
 					ping: channel,
