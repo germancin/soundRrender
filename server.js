@@ -119,7 +119,9 @@ server.get("/listen", (req, res) => {
 				setInterval(function () {
 					// console.log("Tolerance got zero out!");
 					sounded = false;
-				}, 10000);
+				}, 20000);
+			}else{
+				console.log("Ydoundede false??", sounded);
 			}
 				
 		};
@@ -133,12 +135,12 @@ server.get("/listen", (req, res) => {
 			}
 
 			streamArray = [];
-		}, 2000);
+		}, 3000);
 
 		setInterval(function () {
 			// console.log("Tolerance got zero out!");
 			toleranceVal = 0;
-		}, 5000);
+		}, 6000);
 
 		
 		
