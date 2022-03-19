@@ -53,8 +53,7 @@ server.get("/listen", (req, res) => {
 				console.log("pillup");
 		
 
-				setInterval(function () {
-					
+				gpio.on("change", function (channel, value) {
 					gpio.read(channel, function (err, value) {
 						if (err) {
 							console.log("Error Reading:", err.message);
@@ -63,8 +62,10 @@ server.get("/listen", (req, res) => {
 
 						console.log("The value is " + value);
 					});
+				});
 
-				}, 2000);
+					
+
 
 				
 
