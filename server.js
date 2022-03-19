@@ -81,11 +81,13 @@ server.get("/listen", (req, res) => {
 				const tolerance = (value) => {
 					console.log( "got inot tolerance method", value, "currrent tolerance", toleranceVal );
 
-					if (value > 250) console.log("HOLD ON COW BOY ", value);
+					if (value > 300) console.log("HOLD ON COW BOY ", value);
+
+					toleranceVal = toleranceVal + value;
 					
 					if (toleranceVal > 500) console.log("YOU ARE TALKING TOO HIGH !!!!");
 
-					toleranceVal = toleranceVal + value;
+					
 				}
 
 				setInterval(function () {
