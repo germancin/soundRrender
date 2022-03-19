@@ -45,13 +45,12 @@ server.get("/", (req, res) => {
 server.get("/listen", (req, res) => {
 	try {
 		let streamArray = [];
+		let intervalSound = 0;
 		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
 		function readInput(err) {
 			try{
 				console.log("Listening...");
-
-				
 
 				if (err) {
 					console.log("Error listening", err);
@@ -77,6 +76,12 @@ server.get("/listen", (req, res) => {
 					});
 				});
 
+				setInterval(function () {
+					console.log("Current count Stream Values ", streamArray.length);
+					streamArray = [];
+					console.log("Oooo Yeaaa!");
+				}, 2000);
+
 				res.status(200).json({
 					ping: channel,
 					messge: "The sensor started listening succesfully.",
@@ -95,7 +100,7 @@ server.get("/listen", (req, res) => {
 			streamArray.push(stream);
 			console.log(streamArray, streamArray.length);
 		}
-		
+
 	} catch (error) {
 		res.status(500).json({
 			error: error.message,
