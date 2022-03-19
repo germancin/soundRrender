@@ -46,6 +46,7 @@ server.get("/listen", (req, res) => {
 	try {
 		let streamArray = [];
 		let intervalSound = 0;
+		let tolerance = 0;
 		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
 		function readInput(err) {
@@ -76,10 +77,29 @@ server.get("/listen", (req, res) => {
 					});
 				});
 
+				const tolerance = (value) => {
+					console.log('got inot tolerance method', value, 'currrent tolerance', tolerance);
+
+					if (value > 250) console.log("HOLD ON COW BOY ");
+					
+					if(tolerance > 500) console.log("YOU ARE TALKING TOO HIGH !!!!");
+
+					tolerance.push(tolerance + value);
+				}
+
 				setInterval(function () {
 					console.log("Current count Stream Values ", streamArray.length);
+
+					if(streamArray.length > 150) {
+						tolerance(streamArray.length);
+					}
+
 					streamArray = [];
-					console.log("Oooo Yeaaa!");
+				}, 2000);
+
+				setInterval(function () {
+					console.log("Tolerance got zero out!");
+					tolerance = 0;
 				}, 2000);
 
 				res.status(200).json({
