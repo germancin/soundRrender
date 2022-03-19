@@ -116,10 +116,10 @@ server.get("/listen", (req, res) => {
 				console.log("YOU ARE TALKING TOO HIGH !!!!", toleranceVal);
 				sounded = true;
 
-				// setInterval(function () {
-				// 	console.log("soundede false");
-				// 	sounded = false;
-				// }, 15000);
+				setInterval(function () {
+					console.log("soundede false");
+					sounded = false;
+				}, 25000);
 			}else{
 				console.log("Ydoundede false??", sounded);
 			}
