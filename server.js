@@ -48,20 +48,27 @@ server.get("/listen", (req, res) => {
 		gpio.setup(17, gpio.DIR_IN, readInput);
 
 		function readInput(err) {
-			console.log("pillup")
-			if (err) {
-				console.log("Error:", err);
-				return;
-			};
+			try{
 
-			gpio.read(17, function (err, value) {
-				if (err) {
-					console.log("Error Reading:", err);
-					return
-				};
+				console.log("pillup");
+				// if (err) {
+				// 	console.log("Error:", err);
+				// 	return;
+				// }
 
-				console.log("The value is " + value);
-			});
+				gpio.read(17, function (err, value) {
+					if (err) {
+						console.log("Error Reading:", err);
+						return;
+					}
+
+					console.log("The value is " + value);
+				});
+
+			}catch(error){
+				console.log("error", error)
+			}
+			
 		}
 
 		console.log("got inside listen");
