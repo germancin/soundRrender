@@ -141,7 +141,7 @@ server.get("/listen", (req, res) => {
 		const startCounter = () => {
 			let counter = 50
 			let interval = setInterval(function () {
-				counter = counter--;
+				counter = counter - 1
 				console.log(counter)
 				if (counter === 0) {
 					clearInterval(interval);
