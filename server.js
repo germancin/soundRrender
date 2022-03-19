@@ -65,7 +65,7 @@ server.get("/listen", (req, res) => {
 					
 					
 
-					gpio.read(17, function (err, value) {
+					gpio.read(channel, function (err, value) {
 						if (err) {
 							if (err) {
 								console.log("Error event", err);
