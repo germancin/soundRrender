@@ -51,9 +51,8 @@ server.get("/listen", (req, res) => {
 			try{
 				console.log("Listening...");
 
-				gpio.on("change", function (channel, value) {
-
-					console.log("CHANGED::" + value);
+				gpio.on("change", function (channel, changedValue) {
+					console.log("CHANGED::" + changedValue);
 
 					gpio.read(channel, function (err, value) {
 						if (err) {
@@ -61,7 +60,7 @@ server.get("/listen", (req, res) => {
 							return;
 						}
 
-						console.log("----------" + value);
+						changedValue && value && console.log("----------" + value);
 					});
 				});
 
