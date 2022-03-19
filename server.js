@@ -93,11 +93,9 @@ server.get("/listen", (req, res) => {
 
 		const  handleSoundStream = (stream) => {
 			streamArray.push(stream);
-			console.log(streamArray, stream);
+			console.log(streamArray, streamArray.length);
 		}
-
-		console.log("got inside listen", streamArray);
-
+		
 	} catch (error) {
 		res.status(500).json({
 			error: error.message,
