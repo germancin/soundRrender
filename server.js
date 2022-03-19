@@ -88,7 +88,7 @@ server.get("/listen", (req, res) => {
 				}
 
 				setInterval(function () {
-					console.log("Current count Stream Values ", streamArray.length);
+					// console.log("Current count Stream Values ", streamArray.length);
 
 					if(streamArray.length > 150) {
 						console.log("::::::GETTING  LOUGHT ", streamArray.length);
@@ -96,10 +96,10 @@ server.get("/listen", (req, res) => {
 					}
 
 					streamArray = [];
-				}, 1000);
+				}, 2000);
 
 				setInterval(function () {
-					console.log("Tolerance got zero out!");
+					// console.log("Tolerance got zero out!");
 					toleranceVal = 0;
 				}, 5000);
 
