@@ -51,6 +51,8 @@ server.get("/listen", (req, res) => {
 			try{
 				console.log("Listening...");
 
+				let streamArray = [];
+
 				if (err) {
 					console.log("Error listening", err);
 					res.status(500).json({
@@ -73,9 +75,7 @@ server.get("/listen", (req, res) => {
 							}
 						}
 
-						changedValue &&
-							value &&
-							handleSoundSteam(value);
+						changedValue && value && handleSoundStream(value);
 					});
 				});
 
@@ -93,8 +93,9 @@ server.get("/listen", (req, res) => {
 			
 		}
 
-		function handleSoundSteam(stream){
-			console.log(stream);
+		const  handleSoundStream = (stream) => {
+			streamArray.push(stream);
+			console.log(streamArray, stream);
 		}
 
 		console.log("got inside listen");
