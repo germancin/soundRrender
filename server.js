@@ -55,12 +55,14 @@ server.get("/listen", (req, res) => {
 				if (err) {
 					console.log("Error Reading:", err);
 				};
-				
+
 				console.log("The value is " + value);
 			});
 		}
 
 		console.log("got inside listen");
+
+		
 
 		gpio.setup(17, gpio.DIR_IN,  readInput);
 		
@@ -78,4 +80,8 @@ server.get("/listen", (req, res) => {
 server.listen(port, (err) => {
 	if (err) console.log(err);
 	console.log(`server is listening on port ${port}`);
+
+	gpio.on("export", function (channel) {
+		console.log("Channel set: " + channel);
+	});
 });
