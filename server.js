@@ -4,7 +4,7 @@ const cors = require("cors");
 const port = 8000;
 const fs = require("fs");
 const spawn = require("child_process").spawn;
-const gpio = require("rpi-gpio");
+const gpio = require("rpi-gpio").promise;
 const channel = 17;
 const server = express();
 server.use(bodyParser.json());
