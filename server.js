@@ -48,7 +48,7 @@ server.get("/listen", (req, res) => {
 		let streamArray = [];
 		let toleranceVal = 0;
 
-		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
+		
 
 		const handleSoundStream = (stream) => {
 			streamArray.push(stream);
@@ -119,7 +119,7 @@ server.get("/listen", (req, res) => {
 			// console.log("Current count Stream Values ", streamArray.length);
 
 			if (streamArray.length > volume) {
-				// console.log("::::::GETTING  LOUGHT ", streamArray.length);
+				console.log("::::::GETTING  LOUGHT ", streamArray.length);
 				tolerance(streamArray.length);
 			}
 
@@ -131,7 +131,7 @@ server.get("/listen", (req, res) => {
 			toleranceVal = 0;
 		}, 5000);
 
-		
+		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
 	} catch (error) {
 		res.status(500).json({
