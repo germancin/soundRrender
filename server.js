@@ -47,17 +47,21 @@ server.get("/listen", (req, res) => {
 
 		function readInput(err) {
 			console.log("pillup")
-			if (err) throw err;
+			if (err) {
+				console.log("Error:", err);
+				throw err;
+			};
 			gpio.read(channel, function (err, value) {
-				if (err) throw err;
+				if (err) {
+				console.log("Error Reading:", err);
+				throw err;
+			};
 				console.log("The value is " + value);
 			});
 		}
 
 		console.log("got inside listen");
-		gpio.on("change", function (channel, value) {
-			console.log("Channel " + channel + " value is now " + value);
-		});
+
 		gpio.setup(channel, gpio.DIR_IN, readInput);
 		
 		// res.status(200).json({
