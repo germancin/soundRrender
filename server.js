@@ -88,7 +88,7 @@ server.get("/listen", (req, res) => {
 				}
 
 				setInterval(function () {
-					console.log("Current count Stream Values ", streamArray.length);
+					// console.log("Current count Stream Values ", streamArray.length);
 
 					if(streamArray.length > 150) {
 						// console.log("::::::GETTING  LOUGHT ", streamArray.length);
@@ -119,7 +119,7 @@ server.get("/listen", (req, res) => {
 
 		const  handleSoundStream = (stream) => {
 			streamArray.push(stream);
-			// console.log(streamArray.length);
+			console.log(streamArray.length);
 		}
 
 	} catch (error) {
