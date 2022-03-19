@@ -51,6 +51,14 @@ server.get("/listen", (req, res) => {
 			try{
 				console.log("Listening...");
 
+				if (err) {
+					console.log("errors listening", err.message);
+					res.status(500).json({
+						ping: "node Response.",
+						message: "Error: " + err,
+					});
+				}
+
 				gpio.on("change", function (channel, changedValue) {
 					console.log("CHANGED::" + changedValue);
 
