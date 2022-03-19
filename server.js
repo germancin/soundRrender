@@ -49,8 +49,6 @@ gpio.on('change', (pin, value) => {
 		
 		gpio.setup(pin, gpio.DIR_IN, gpio.EDGE_BOTH);
 	
-	
-	
 });
 
 
