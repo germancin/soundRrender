@@ -115,7 +115,7 @@ server.get("/listen", (req, res) => {
 			if (toleranceVal > volume + 999 && sounded === false){
 				console.log("YOU ARE TALKING TOO HIGH !!!!", toleranceVal);
 				sounded = true;
-
+				startCounter()
 			}else{
 				console.log("Ydoundede false??", sounded);
 			}
@@ -138,10 +138,17 @@ server.get("/listen", (req, res) => {
 			toleranceVal = 0;
 		}, 6000);
 
-		setInterval(function () {
-			!sounded && console.log("soundede ", sounded);
-			if (sounded) sounded = false;
-		}, 25000);
+		const startCounter = () => {
+			let counter = 50
+			let interval = setInterval(function () {
+				counter = counter--;
+				console.log(counter)
+				if (counter === 0) {
+					clearInterval(interval);
+				}
+			}, 1000);
+		}
+		
 		
 
 		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
