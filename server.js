@@ -7,7 +7,7 @@ const spawn = require("child_process").spawn;
 const gpio = require("rpi-gpio");
 const channel = 11; // which is GPIO17 that is used in python.
 const server = express();
-const volume = 500;
+const volume = 1000;
 server.use(bodyParser.json());
 server.use(cors());
 
@@ -106,7 +106,7 @@ server.get("/listen", (req, res) => {
 			// 	toleranceVal
 			// );
 
-			if (value > volume + 500 && value < toleranceVal) {
+			if (value > volume + 500 && value > toleranceVal) {
 				console.log("HOLD ON COW BOY ", value);
 			}
 
