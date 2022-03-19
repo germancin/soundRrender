@@ -19,6 +19,8 @@ server.get("/", (req, res) => {
 		python.stdout.on("data", function (data) {
 			console.log("Pipe data from python script ...");
 			dataToSend = data.toString();
+
+			console.log("Python response:::", dataToSend);
 		});
 
 		// in close event we are sure that stream from child process is closed
@@ -26,7 +28,7 @@ server.get("/", (req, res) => {
 			console.log(`child process close all stdio with code ${code}`);
 			// send data to browser
 			res.status(200).json({
-				message: "Ok",
+				message: "Python Response.",
 				payload: dataToSend,
 			});
 		});
