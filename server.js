@@ -60,7 +60,7 @@ server.get("/listen", (req, res) => {
 							return;
 						}
 
-						console.log("READING::::" + value);
+						console.log("--------" + value);
 					});
 
 				}, 500);
@@ -68,7 +68,7 @@ server.get("/listen", (req, res) => {
 
 				gpio.on("change", function (channel, value) {
 
-					console.log("::CHANGED::" + value);
+					console.log("CHANGED::" + value);
 
 					// gpio.read(channel, function (err, value) {
 					// 	if (err) {
