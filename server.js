@@ -44,14 +44,14 @@ server.get("/", (req, res) => {
 
 server.get("/listen", (req, res) => {
 	try {
-
+		let streamArray = [];
 		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
 		function readInput(err) {
 			try{
 				console.log("Listening...");
 
-				let streamArray = [];
+				
 
 				if (err) {
 					console.log("Error listening", err);
