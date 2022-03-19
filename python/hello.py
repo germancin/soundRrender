@@ -21,4 +21,4 @@ print("Script ended!")
 # infinite loop
 while True:
         time.sleep(1)
-        print("!")
+        print(".")
