@@ -2,10 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const port = 8000;
-const pin = 17;
 const fs = require("fs");
 const spawn = require("child_process").spawn;
-const gpio = require("rpi-gpio");
 
 const server = express();
 server.use(bodyParser.json());
@@ -13,33 +11,27 @@ server.use(cors());
 
 server.get("/", (req, res) => {
 	try {
+		var dataToSend;
+		// spawn new child process to call the python script
+		const python = spawn("python", ["./python/hello.py"]);
+
+		// collect data from script
+		python.stdout.on("data", function (data) {
+			console.log("Pipe data from python script ...");
+			dataToSend = data.toString();
+		});
+
+		// in close event we are sure that stream from child process is closed
+		python.on("close", (code) => {
+			console.log(`child process close all stdio with code ${code}`);
+			// send data to browser
+			res.status(200).json({
+				message: "Ok",
+				payload: dataToSend,
+			});
+		});
 
 		
-
-		res.status(200).json({
-			message: "Ok",
-			payload: [],
-		});
-		
-	} catch (error) {
-		res.status(500).json({
-			error: error.message,
-		});
-	}
-});
-
-server.get("/listen", (req, res) => {
-	try {
-		gpio.on("change", (pin, value) => {
-			console.log("the value::", value);
-		});
-
-		gpio.setup(pin, gpio.DIR_IN, gpio.EDGE_BOTH);
-
-		res.status(200).json({
-			message: "Sound",
-			payload: [],
-		});
 	} catch (error) {
 		res.status(500).json({
 			error: error.message,
@@ -50,7 +42,4 @@ server.get("/listen", (req, res) => {
 server.listen(port, (err) => {
 	if (err) console.log(err);
 	console.log(`server is listening on port ${port}`);
-	
 });
-
-
