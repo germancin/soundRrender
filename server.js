@@ -43,11 +43,16 @@ server.get("/", (req, res) => {
 
 server.get("/listen", (req, res) => {
 	try {
-		
-		res.status(200).json({
-			message: "node Response.",
-			payload: "",
+
+		gpio.on("change", function (channel, value) {
+			console.log("Channel " + channel + " value is now " + value);
 		});
+		gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH);
+		
+		// res.status(200).json({
+		// 	message: "node Response.",
+		// 	payload: "",
+		// });
 	} catch (error) {
 		res.status(500).json({
 			error: error.message,
