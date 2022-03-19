@@ -4,7 +4,7 @@ const cors = require("cors");
 const port = 8000;
 const fs = require("fs");
 const spawn = require("child_process").spawn;
-const gpio = require("rpi-gpio").promise;
+const gpio = require("rpi-gpio");
 const channel = 17;
 const server = express();
 server.use(bodyParser.json());
@@ -62,7 +62,7 @@ server.get("/listen", (req, res) => {
 
 		console.log("got inside listen");
 
-		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
+		gpio.setup(channel, gpio.DIR_IN,  readInput);
 		
 		// res.status(200).json({
 		// 	message: "node Response.",
