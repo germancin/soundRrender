@@ -5,7 +5,7 @@ const port = 8000;
 const fs = require("fs");
 const spawn = require("child_process").spawn;
 const gpio = require("rpi-gpio");
-const channel = 17;
+const channel = 11; // which is GPIO17 that is used in python.
 const server = express();
 server.use(bodyParser.json());
 server.use(cors());
@@ -45,7 +45,7 @@ server.get("/", (req, res) => {
 server.get("/listen", (req, res) => {
 	try {
 
-		gpio.setup(17, gpio.DIR_IN, readInput);
+		gpio.setup(channel, gpio.DIR_IN, readInput);
 
 		function readInput(err) {
 			try{
@@ -56,9 +56,9 @@ server.get("/listen", (req, res) => {
 				// 	return;
 				// }
 
-				gpio.read(17, function (err, value) {
+				gpio.read(channel, function (err, value) {
 					if (err) {
-						console.log("Error Reading:", err);
+						console.log("Error Reading:", err.message);
 						return;
 					}
 
