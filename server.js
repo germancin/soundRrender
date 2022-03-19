@@ -14,14 +14,7 @@ server.use(cors());
 server.get("/", (req, res) => {
 	try {
 
-		console.log("SETUP", gpio);
-		gpio.on('change', (pin, value) => {
 		
-			console.log("the value::", value)
-			
-		});
-		
-		gpio.setup(pin, gpio.DIR_IN, gpio.EDGE_BOTH);
 
 		res.status(200).json({
 			message: "Ok",
@@ -35,19 +28,28 @@ server.get("/", (req, res) => {
 	}
 });
 
+server.get("/listen", (req, res) => {
+	try {
+		gpio.on("change", (pin, value) => {
+			console.log("the value::", value);
+		});
+
+		gpio.setup(pin, gpio.DIR_IN, gpio.EDGE_BOTH);
+
+		res.status(200).json({
+			message: "Sound",
+			payload: [],
+		});
+	} catch (error) {
+		res.status(500).json({
+			error: error.message,
+		});
+	}
+});
+
 server.listen(port, (err) => {
 	if (err) console.log(err);
 	console.log(`server is listening on port ${port}`);
-	
-	
-	
-gpio.on('change', (pin, value) => {
-		
-			console.log("the value::", value)
-			
-		});
-		
-		gpio.setup(pin, gpio.DIR_IN, gpio.EDGE_BOTH);
 	
 });
 
