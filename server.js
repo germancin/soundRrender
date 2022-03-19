@@ -96,11 +96,8 @@ server.get("/listen", (req, res) => {
 			console.log(streamArray, stream);
 		}
 
-		console.log("got inside listen");
+		console.log("got inside listen", streamArray);
 
-		
-		
-		
 	} catch (error) {
 		res.status(500).json({
 			error: error.message,
