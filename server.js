@@ -107,7 +107,7 @@ server.get("/listen", (req, res) => {
 			// );
 
 			if (value > volume + 500 && value > toleranceVal) {
-				console.log("HOLD ON COW BOY ", value);
+				// console.log("HOLD ON COW BOY ", value);
 			}
 
 			toleranceVal = toleranceVal + value;
