@@ -51,19 +51,22 @@ server.get("/listen", (req, res) => {
 			try{
 
 				console.log("pillup");
-				// if (err) {
-				// 	console.log("Error:", err);
-				// 	return;
-				// }
+		
 
-				gpio.read(channel, function (err, value) {
-					if (err) {
-						console.log("Error Reading:", err.message);
-						return;
-					}
+				setInterval(function () {
+					
+					gpio.read(channel, function (err, value) {
+						if (err) {
+							console.log("Error Reading:", err.message);
+							return;
+						}
 
-					console.log("The value is " + value);
-				});
+						console.log("The value is " + value);
+					});
+
+				}, 2000);
+
+				
 
 			}catch(error){
 				console.log("error", error)
