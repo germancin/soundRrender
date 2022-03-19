@@ -45,7 +45,7 @@ server.get("/", (req, res) => {
 server.get("/listen", (req, res) => {
 	try {
 
-		gpio.setup(channel, gpio.DIR_IN, readInput);
+		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
 		function readInput(err) {
 			try{
