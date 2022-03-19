@@ -41,6 +41,20 @@ server.get("/", (req, res) => {
 	}
 });
 
+server.get("/listen", (req, res) => {
+	try {
+		
+		res.status(200).json({
+			message: "node Response.",
+			payload: "",
+		});
+	} catch (error) {
+		res.status(500).json({
+			error: error.message,
+		});
+	}
+});
+
 server.listen(port, (err) => {
 	if (err) console.log(err);
 	console.log(`server is listening on port ${port}`);
