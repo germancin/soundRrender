@@ -117,9 +117,9 @@ server.get("/listen", (req, res) => {
 				sounded = true;
 
 				setInterval(function () {
-					// console.log("Tolerance got zero out!");
+					console.log("soundede false");
 					sounded = false;
-				}, 20000);
+				}, 5000);
 			}else{
 				console.log("Ydoundede false??", sounded);
 			}
