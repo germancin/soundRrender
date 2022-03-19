@@ -45,7 +45,6 @@ server.get("/", (req, res) => {
 server.get("/listen", (req, res) => {
 	try {
 		let streamArray = [];
-		let intervalSound = 0;
 		let toleranceVal = 0;
 
 		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
@@ -86,12 +85,10 @@ server.get("/listen", (req, res) => {
 					toleranceVal = toleranceVal + value;
 					
 					if (toleranceVal > 500) console.log("YOU ARE TALKING TOO HIGH !!!!");
-
-					
 				}
 
 				setInterval(function () {
-					// console.log("Current count Stream Values ", streamArray.length);
+					console.log("Current count Stream Values ", streamArray.length);
 
 					if(streamArray.length > 150) {
 						// console.log("::::::GETTING  LOUGHT ", streamArray.length);
