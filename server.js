@@ -45,15 +45,19 @@ server.get("/", (req, res) => {
 server.get("/listen", (req, res) => {
 	try {
 
+		gpio.setup(17, gpio.DIR_IN, readInput);
+
 		function readInput(err) {
 			console.log("pillup")
 			if (err) {
 				console.log("Error:", err);
+				return;
 			};
 
-			gpio.read(channel, function (err, value) {
+			gpio.read(17, function (err, value) {
 				if (err) {
 					console.log("Error Reading:", err);
+					return
 				};
 
 				console.log("The value is " + value);
@@ -63,8 +67,6 @@ server.get("/listen", (req, res) => {
 		console.log("got inside listen");
 
 		
-
-		gpio.setup(17, gpio.DIR_IN,  readInput);
 		
 		// res.status(200).json({
 		// 	message: "node Response.",
