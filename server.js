@@ -62,7 +62,7 @@ server.get("/listen", (req, res) => {
 
 		console.log("got inside listen");
 
-		gpio.setup(channel, gpio.DIR_IN, readInput);
+		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 		
 		// res.status(200).json({
 		// 	message: "node Response.",
