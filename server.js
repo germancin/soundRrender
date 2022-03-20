@@ -130,7 +130,7 @@ server.get("/listen", (req, res) => {
 			toleranTimerOn = true;
 			let interval = setInterval(function () {
 				counter = counter - 1;
-				toleranceVal = 0;
+				
 				console.log("tolerance", counter, toleranceVal)
 				if (counter === 0) {
 					clearInterval(interval);
