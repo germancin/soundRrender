@@ -10,7 +10,7 @@ const server = express();
 const volume = 2000;
 const gettingLoud = 2300;
 const volumeThreshold = gettingLoud * 3;
-const toleranTimerOn = false; 
+
 server.use(bodyParser.json());
 server.use(cors());
 
@@ -51,7 +51,7 @@ server.get("/listen", (req, res) => {
 		let streamArray = [];
 		let toleranceVal = 0;
 		let sounded = false;
-		
+		let toleranTimerOn = false; 
 
 		const handleSoundStream = (stream) => {
 			streamArray.push(stream);
