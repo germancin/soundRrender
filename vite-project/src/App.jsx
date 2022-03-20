@@ -43,10 +43,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <div className="App-header">
         <img src={ logo } className="App-logo" alt="logo" />
         <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
         </p>
         <div>
 
@@ -54,7 +53,7 @@ function App() {
             VOLUME THRESHOLD: { volumeThresholdValue }
           </div>
 
-          <div container direction={ 'row' } justifyContent={ 'center' } style={ { border: "2px solid blue" } }>
+          <div container direction={ 'row' } justifyContent={ 'center' } className={ 'btn-container' }>
 
             <button variant="text" value={ volumeThresholdValue } onClick={ ( event ) => handleThreshold( event,'subs' ) }>
               -
@@ -67,11 +66,11 @@ function App() {
 
 
 
-          <div>
+          <div className='section'>
             TOLERANCE:   { tolerance }
           </div>
 
-          <div container direction={ 'row' } justifyContent={ 'center' } style={ { border: "2px solid yellow" } }>
+          <div container direction={ 'row' } justifyContent={ 'center' } className={ 'btn-container' }>
 
             <button variant="text" value={ tolerance } onClick={ ( event ) => handleTolerance( event,'subs' ) }>
               -
@@ -84,7 +83,7 @@ function App() {
 
 
         </div>
-      </header>
+      </div>
     </div>
   )
 }
