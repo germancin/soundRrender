@@ -128,23 +128,31 @@ server.get("/listen", (req, res) => {
 			if (streamArray.length > volume + 100) {
 				console.log("::::::GETTING  LOUGHT ", streamArray.length);
 				tolerance(streamArray.length);
+				startToleranceTimer();
 			}
 
 			streamArray = [];
 		}, 3000);
 
-		setInterval(function () {
-			// console.log("Tolerance got zero out!");
-			toleranceVal = 0;
-		}, 6000);
-
-		const startCounter = () => {
-			let counter = 50
+		const startToleranceTimer = () => {
+			let counter = 10;
 			let interval = setInterval(function () {
-				counter = counter - 1
-				console.log(counter)
+				counter = counter - 1;
+				console.log("tolerance", counter, toleranceVal)
 				if (counter === 0) {
 					clearInterval(interval);
+					toleranceVal = 0;
+				}
+			}, 1000);
+		};
+
+		const startCounter = () => {
+			let counter = 20
+			let interval = setInterval(function () {
+				counter = counter - 1
+				if (counter === 0) {
+					clearInterval(interval);
+					sounded = false;
 				}
 			}, 1000);
 		}
