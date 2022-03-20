@@ -72,14 +72,13 @@ server.get("/listen", (req, res) => {
 
 				gpio.on("change", function (channel, changedValue) {
 					gpio.read(channel, function (err, value) {
+						
 						if (err) {
-							if (err) {
-								console.log("Error event", err);
-								res.status(500).json({
-									ping: channel,
-									message: err.message,
-								});
-							}
+							console.log("Error event", err);
+							res.status(500).json({
+								ping: channel,
+								message: err.message,
+							});
 						}
 
 						changedValue && value && handleSoundStream(value);
@@ -105,14 +104,13 @@ server.get("/listen", (req, res) => {
 			toleranceVal = toleranceVal + value;
 
 			if (toleranceVal > volumeThreshold && !sounded) {
-				console.log(":::::::::::::::::::::::::::::::::::::::::YOU ARE TALKING TOO HIGH !!!!", toleranceVal);
+				console.log("::::::::::::::::::::::::::::::::::YOU ARE TALKING TOO HIGH !!!!", toleranceVal);
 				sounded = true;
 				toleranceVal = 0;
 				startCounter();
 			} else {
 				console.log("Ydoundede false??", sounded);
 			}
-				
 		};
 
 		setInterval(function () {
@@ -132,9 +130,10 @@ server.get("/listen", (req, res) => {
 				counter = counter - 1;
 				
 				console.log("tolerance", counter, toleranceVal)
+
 				if (counter === 0) {
 					clearInterval(interval);
-					
+					toleranceVal = 0;
 					toleranTimerOn = false;
 				}
 			}, 1000);
@@ -148,13 +147,11 @@ server.get("/listen", (req, res) => {
 				if (counter === 0) {
 					clearInterval(interval);
 					sounded = false;
-					
+					toleranceVal = 0;
 				}
 			}, 1000);
 		}
 		
-		
-
 		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
 	} catch (error) {
