@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Button,Grid } from "@mui/material";
 import logo from './logo.svg'
 import { updateVolumeThreshold } from './actions';
 import './App.css'
@@ -38,19 +37,19 @@ function App() {
         <p>
           Edit <code>App.jsx</code> and save to test HMR updates.
         </p>
-        <Grid>
+        <div>
 
           { volumeThresholdValue }
 
-          <Grid container direction={ 'row' } justifyContent={ 'center' } style={ { border: "2px solid blue" } }>
+          <div container direction={ 'row' } justifyContent={ 'center' } style={ { border: "2px solid blue" } }>
 
-            <Button variant="text" value={ volumeThresholdValue } onClick={ ( event ) => handleThreshold( event,'subs' ) }>
+            <button variant="text" value={ volumeThresholdValue } onClick={ ( event ) => handleThreshold( event,'subs' ) }>
               -
-            </Button>
-            <Button variant="text" value={ volumeThresholdValue } onClick={ ( event ) => handleThreshold( event,'add' ) }>
+            </button>
+            <button variant="text" value={ volumeThresholdValue } onClick={ ( event ) => handleThreshold( event,'add' ) }>
               +
-            </Button>
-          </Grid>
+            </button>
+          </div>
 
 
           { ' | ' }
@@ -62,7 +61,7 @@ function App() {
           >
             Vite Docs
           </a>
-        </Grid>
+        </div>
       </header>
     </div>
   )
