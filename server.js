@@ -8,7 +8,7 @@ const gpio = require("rpi-gpio");
 const channel = 11; // which is GPIO17 that is used in python.
 const server = express();
 const volume = 2000;
-const gettingLoud = 4000;
+const gettingLoud = 2000;
 const volumeThreshold = gettingLoud * 3; 
 server.use(bodyParser.json());
 server.use(cors());
