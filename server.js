@@ -102,12 +102,12 @@ server.get("/listen", (req, res) => {
 		}
 
 		const tolerance = (value) => {
-
 			toleranceVal = toleranceVal + value;
 
 			if (toleranceVal > volumeThreshold && !sounded) {
 				console.log(":::::::::::::::::::::::::::::::::::::::::YOU ARE TALKING TOO HIGH !!!!", toleranceVal);
 				sounded = true;
+				toleranceVal = 0;
 				startCounter();
 			} else {
 				console.log("Ydoundede false??", sounded);
@@ -147,6 +147,7 @@ server.get("/listen", (req, res) => {
 				if (counter === 0) {
 					clearInterval(interval);
 					sounded = false;
+					
 				}
 			}, 1000);
 		}
