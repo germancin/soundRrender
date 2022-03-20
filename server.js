@@ -7,7 +7,7 @@ const spawn = require("child_process").spawn;
 const gpio = require("rpi-gpio");
 const channel = 11; // which is GPIO17 that is used in python.
 const server = express();
-const volume = 4000;
+const volume = 3000;
 server.use(bodyParser.json());
 server.use(cors());
 
