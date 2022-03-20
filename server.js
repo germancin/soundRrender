@@ -191,11 +191,14 @@ server.get("/playmp3", (req, res) => {
 
 server.post("/updateVolumneTreshold", (req, res) => {
 	try {
+
+		console.log("REQUEST:::::", req);
 		
-	res.status(200).json({
-		message: "updateVolumneTreshold Response.",
-		payload: req,
-	});
+		res.status(200).json({
+			message: "updateVolumneTreshold Response.",
+			payload: '',
+		});
+
 	} catch (error) {
 		res.status(500).json({
 			error: error.message,
