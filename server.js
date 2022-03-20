@@ -9,7 +9,8 @@ const channel = 11; // which is GPIO17 that is used in python.
 const server = express();
 const volume = 2000;
 const gettingLoud = 2300;
-const volumeThreshold = gettingLoud * 3; 
+const volumeThreshold = gettingLoud * 3;
+const toleranTimerOn = false; 
 server.use(bodyParser.json());
 server.use(cors());
 
@@ -118,7 +119,7 @@ server.get("/listen", (req, res) => {
 			if (streamArray.length > gettingLoud) {
 				console.log("::::::GETTING  LOUGHT ", streamArray.length);
 				tolerance(streamArray.length);
-				startToleranceTimer();
+				!toleranTimerOn && startToleranceTimer();
 			}
 
 			streamArray = [];
@@ -126,12 +127,14 @@ server.get("/listen", (req, res) => {
 
 		const startToleranceTimer = () => {
 			let counter = 10;
+			toleranTimerOn = true;
 			let interval = setInterval(function () {
 				counter = counter - 1;
 				console.log("tolerance", counter, toleranceVal)
 				if (counter === 0) {
 					clearInterval(interval);
 					toleranceVal = 0;
+					toleranTimerOn = false;
 				}
 			}, 1000);
 		};
