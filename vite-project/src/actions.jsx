@@ -23,3 +23,26 @@ export async function updateVolumeThreshold( value ) {
 
 
 }
+
+export async function updateTolerance( value ) {
+
+	myStorage.setItem( 'tolerance',value );
+
+	var config = {
+		method: 'post',
+		url: 'http://192.168.0.237:7000/updateTolerance',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: { 'tolerance': value }
+	};
+	try {
+		let request = await axios( config );
+
+		console.log( "RESPONSE",request )
+	} catch ( error ) {
+		return error;
+	}
+
+
+}
