@@ -8,6 +8,8 @@ const gpio = require("rpi-gpio");
 const channel = 11; // which is GPIO17 that is used in python.
 const server = express();
 const volume = 2000;
+const gettingLoud = 4000;
+const volumeThreshold = gettingLoud * 3; 
 server.use(bodyParser.json());
 server.use(cors());
 
@@ -99,31 +101,21 @@ server.get("/listen", (req, res) => {
 		}
 
 		const tolerance = (value) => {
-			// console.log(
-			// 	"got inot tolerance method",
-			// 	value,
-			// 	"currrent tolerance",
-			// 	toleranceVal
-			// );
-
-			if (value > volume + 2000 && value > toleranceVal) {
-				// console.log("HOLD ON COW BOY ", value);
-			}
 
 			toleranceVal = toleranceVal + value;
 
-			if (toleranceVal > volume + 1500 && !sounded){
+			if (toleranceVal > volumeThreshold && !sounded) {
 				console.log("YOU ARE TALKING TOO HIGH !!!!", toleranceVal);
 				sounded = true;
 				startCounter();
-			}else{
+			} else {
 				console.log("Ydoundede false??", sounded);
 			}
 				
 		};
 
 		setInterval(function () {
-			if (streamArray.length > volume) {
+			if (streamArray.length > gettingLoud) {
 				console.log("::::::GETTING  LOUGHT ", streamArray.length);
 				tolerance(streamArray.length);
 				startToleranceTimer();
