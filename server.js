@@ -250,6 +250,7 @@ server.post("/updateVolumneTreshold", (req, res) => {
 		const tolerance = (value) => {
 			toleranceVal = toleranceVal + value;
 
+			console.log("WHAT DO WEHAVE", volumeThreshold);
 			if (toleranceVal > volumeThreshold && !sounded) {
 				const python = spawn("python", ["python/playmp3.py"]);
 				console.log(
