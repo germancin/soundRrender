@@ -196,8 +196,8 @@ server.post("/updateVolumneTreshold", (req, res) => {
 		let sounded = false;
 		let toleranTimerOn = false;
 
-		const volumeThresholdRequest = req.body?.volumeThreshold || null;
-		console.log("REQUEST:::::", req?.body?.volumeThreshold || false);
+		const volumeThresholdRequest = req.body.volumeThreshold || null;
+		console.log("REQUEST:::::", req.body.volumeThreshold || false);
 
 		if (volumeThresholdRequest) {
 			volumeThreshold = volumeThresholdRequest;
@@ -309,7 +309,7 @@ server.post("/updateVolumneTreshold", (req, res) => {
 			error: error.message,
 		});
 	}
-	
+
 });
 
 server.listen(port, (err) => {
