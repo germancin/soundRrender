@@ -1,4 +1,5 @@
 import os
-os.system('mpg321 solem.mp3 &')
+
+os.system('mpg321 /home/pi/soundRrender/python/solem.mp3 &')
 
 print("Script started!")
