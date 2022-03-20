@@ -30,6 +30,9 @@ function App() {
     setVolumeThresholdValue( total );
     updateVolumeThreshold( total );
 
+    const valTot = myStorage.getItem( 'tolerance' ) || 20;
+    valTot && setTolerance( valTot );
+    valTot && updateTolerance( valTot );
   }
 
   const handleTolerance = ( e,action = null ) => {
@@ -40,6 +43,9 @@ function App() {
     setTolerance( total );
     updateTolerance( total );
 
+    const valTotal = myStorage.getItem( 'volumeThreshold' ) || 2000;
+    valTotal && setVolumeThresholdValue( valTotal );
+    valTotal && updateVolumeThreshold( valTotal );
   }
 
   return (
