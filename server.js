@@ -206,7 +206,7 @@ const readInput = (err) => {
 		console.log("Listening...");
 
 		if (err) {
-			console.log("Error listening", err);
+			console.log("Error Listening.", err);
 		}
 
 		gpio.on("change", function (channel, changedValue) {
@@ -229,15 +229,20 @@ const tolerance = (value) => {
 	toleranceVal = toleranceVal + value;
 
 	console.log("WHAT DO WEHAVE", volumeThreshold);
+
 	if (toleranceVal > volumeThreshold && !sounded) {
+
 		const python = spawn("python", ["python/playmp3.py"]);
+
 		console.log(
 			"::::::::::::::::::::::::::::::::::YOU ARE TALKING TOO HIGH !!!!",
 			toleranceVal
 		);
+
 		sounded = true;
 		toleranceVal = 0;
 		startCounter();
+
 	} else {
 		console.log("Ydoundede false??", sounded);
 	}
@@ -285,15 +290,14 @@ const startCounter = () => {
 server.post("/updateVolumneTreshold", (req, res) => {
 	try {
 		const volumeThresholdRequest = req.body.volumeThreshold || null;
-		console.log("REQUEST:::::", req.body.volumeThreshold || false);
 
 		if (volumeThresholdRequest) {
 			volumeThreshold = volumeThresholdRequest;
 		}
 
-		gpio.destroy(function () {
-			console.log("All pins unexported");
-		});
+		// gpio.destroy(function () {
+		// 	console.log("All pins unexported");
+		// });
 
 		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
@@ -316,9 +320,9 @@ server.post("/updateTolerance", (req, res) => {
 
 		console.log("NEWTOLERANCE:::", toleranceLoud);
 
-		gpio.destroy(function () {
-			console.log("All pins unexported");
-		});
+		// gpio.destroy(function () {
+		// 	console.log("All pins unexported");
+		// });
 
 		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
