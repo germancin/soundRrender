@@ -1,10 +1,29 @@
 import { useState } from 'react'
-import Grid from 'material-grid/dist/Grid/Grid';
+import { Button,Grid } from "@mui/material";
 import logo from './logo.svg'
+import { updateVolumeThreshold } from './actions';
 import './App.css'
+const myStorage = window.localStorage;
 
 function App() {
-  const [ count,setCount ] = useState( 0 )
+  const [ count,setCount ] = useState( 0 );
+  const [ volumeThresholdValue,setVolumeThresholdValue ] = useState( 0 )
+
+  if ( myStorage.getItem( 'volumeThreshold' ) ) {
+    const val = myStorage.getItem( 'volumeThreshold' );
+    myStorage.setItem( 'volumeThreshold',val );
+    volumeThresholdValue === 0 && setVolumeThresholdValue( val );
+  }
+
+  const handleThreshold = ( e,action = null ) => {
+    let total = 0;
+    if ( action === 'add' ) total = parseInt( e.target.value ) + 1;
+    if ( action === 'subs' ) total = parseInt( e.target.value ) - 1;
+
+    setVolumeThresholdValue( total );
+    updateVolumeThreshold( total );
+
+  }
 
   return (
     <div className="App">
@@ -21,13 +40,16 @@ function App() {
         </p>
         <Grid>
 
-          <Grid style={ { border: "2px solid yellow" } }>
-            <button type="button" onClick={ () => console.log( "less" ) }>
+          { volumeThresholdValue }
+
+          <Grid container direction={ 'row' } justifyContent={ 'center' } style={ { border: "2px solid blue" } }>
+
+            <Button variant="text" value={ volumeThresholdValue } onClick={ ( event ) => handleThreshold( event,'subs' ) }>
               -
-            </button>
-            <button type="button" onClick={ () => console.log( "more" ) }>
+            </Button>
+            <Button variant="text" value={ volumeThresholdValue } onClick={ ( event ) => handleThreshold( event,'add' ) }>
               +
-            </button>
+            </Button>
           </Grid>
 
 

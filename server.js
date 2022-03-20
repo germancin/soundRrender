@@ -7,9 +7,8 @@ const spawn = require("child_process").spawn;
 const gpio = require("rpi-gpio");
 const channel = 11; // which is GPIO17 that is used in python.
 const server = express();
-const volume = 2000;
-const gettingLoud = 50;
-const volumeThreshold = gettingLoud * 3;
+let gettingLoud = 50;
+let volumeThreshold = gettingLoud * 3;
 
 server.use(bodyParser.json());
 server.use(cors());
@@ -72,7 +71,6 @@ server.get("/listen", (req, res) => {
 
 				gpio.on("change", function (channel, changedValue) {
 					gpio.read(channel, function (err, value) {
-						
 						if (err) {
 							console.log("Error event", err);
 							res.status(500).json({
@@ -184,6 +182,20 @@ server.get("/playmp3", (req, res) => {
 			});
 		});
 		
+	} catch (error) {
+		res.status(500).json({
+			error: error.message,
+		});
+	}
+});
+
+server.post("/updateVolumneTreshold", (req, res) => {
+	try {
+		
+	res.status(200).json({
+		message: "updateVolumneTreshold Response.",
+		payload: req,
+	});
 	} catch (error) {
 		res.status(500).json({
 			error: error.message,
