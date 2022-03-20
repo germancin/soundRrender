@@ -235,7 +235,7 @@ const tolerance = (value) => {
 		const python = spawn("python", ["python/playmp3.py"]);
 
 		console.log(
-			"::::::::::::::::::::::::::::::::::YOU ARE TALKING TOO HIGH !!!!",
+			":::::::::::YOU ARE TALKING TOO HIGH :::::::::",
 			toleranceVal
 		);
 
