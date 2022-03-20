@@ -7,7 +7,7 @@ const spawn = require("child_process").spawn;
 const gpio = require("rpi-gpio");
 const channel = 11; // which is GPIO17 that is used in python.
 const server = express();
-const volume = 1000;
+const volume = 4000;
 server.use(bodyParser.json());
 server.use(cors());
 
@@ -106,16 +106,16 @@ server.get("/listen", (req, res) => {
 			// 	toleranceVal
 			// );
 
-			if (value > volume + 500 && value > toleranceVal) {
+			if (value > volume + 2000 && value > toleranceVal) {
 				// console.log("HOLD ON COW BOY ", value);
 			}
 
 			toleranceVal = toleranceVal + value;
 
-			if (toleranceVal > volume + 999 && sounded === false){
+			if (toleranceVal > volume + 1500 && !sounded){
 				console.log("YOU ARE TALKING TOO HIGH !!!!", toleranceVal);
 				sounded = true;
-				startCounter()
+				startCounter();
 			}else{
 				console.log("Ydoundede false??", sounded);
 			}
@@ -125,7 +125,7 @@ server.get("/listen", (req, res) => {
 		setInterval(function () {
 			// console.log("Current count Stream Values ", streamArray.length);
 
-			if (streamArray.length > volume + 100) {
+			if (streamArray.length > volume) {
 				console.log("::::::GETTING  LOUGHT ", streamArray.length);
 				tolerance(streamArray.length);
 				startToleranceTimer();
@@ -152,6 +152,7 @@ server.get("/listen", (req, res) => {
 				counter = counter - 1
 				if (counter === 0) {
 					clearInterval(interval);
+					console.log(" ::: can sound in", counter);
 					sounded = false;
 				}
 			}, 1000);
