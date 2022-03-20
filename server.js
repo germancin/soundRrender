@@ -121,7 +121,7 @@ server.get("/listen", (req, res) => {
 			}
 
 			streamArray = [];
-		}, 3000);
+		}, 2000);
 
 		const startToleranceTimer = () => {
 			let counter = 10;
