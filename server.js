@@ -55,7 +55,7 @@ server.get("/listen", (req, res) => {
 
 		const handleSoundStream = (stream) => {
 			streamArray.push(stream);
-			// console.log(streamArray.length);
+			console.log(streamArray.length);
 		};
 
 		const readInput = (err) => {
