@@ -7,7 +7,7 @@ const spawn = require("child_process").spawn;
 const gpio = require("rpi-gpio");
 const channel = 11; // which is GPIO17 that is used in python.
 const server = express();
-let gettingLoud = 50;
+let gettingLoud = 1;
 let volumeThreshold = gettingLoud * 3;
 
 server.use(bodyParser.json());
@@ -266,7 +266,7 @@ server.post("/updateVolumneTreshold", (req, res) => {
 
 		setInterval(function () {
 			if (streamArray.length > gettingLoud) {
-				console.log("::::::GETTING  LOUGHT ", streamArray.length);
+				console.log("::::::GETTING  LOUGHT UPDATE", streamArray.length);
 				tolerance(streamArray.length);
 				!toleranTimerOn && startToleranceTimer();
 			}
