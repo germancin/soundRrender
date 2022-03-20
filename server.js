@@ -216,7 +216,7 @@ const readInput = (err) => {
 				}
 
 				changedValue && value && handleSoundStream(value);
-				
+
 			});
 		});
 
@@ -291,6 +291,10 @@ server.post("/updateVolumneTreshold", (req, res) => {
 			volumeThreshold = volumeThresholdRequest;
 		}
 
+		gpio.destroy(function () {
+			console.log("All pins unexported");
+		});
+
 		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
 	} catch (error) {
@@ -306,18 +310,23 @@ server.post("/updateTolerance", (req, res) => {
 	try {
 		const toleranceValueRequest = req.body.tolerance || null;
 
-		console.log("REQUEST:::::", req.body.tolerance || false);
-
 		if (toleranceValueRequest) {
-			toleranceLoud = toleranceValueRequest;
+			toleranceLoud = toleranceValueRequest * 3;
 		}
+
+		console.log("NEWTOLERANCE:::", toleranceLoud);
+
+		gpio.destroy(function () {
+			console.log("All pins unexported");
+		});
 
 		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
 	} catch (error) {
-		res.status(500).json({
-			error: error.message,
-		});
+		console.log(error)
+		// res.status(500).json({
+		// 	error: error.message,
+		// });
 	}
 });
 
