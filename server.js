@@ -341,36 +341,36 @@ server.post("/updateTolerance", (req, res) => {
 
 				if (err) {
 					console.log("Error listening", err);
-					res.status(500).json({
-						ping: channel,
-						message: err,
-					});
+					// res.status(500).json({
+					// 	ping: channel,
+					// 	message: err,
+					// });
 				}
 
 				gpio.on("change", function (channel, changedValue) {
 					gpio.read(channel, function (err, value) {
 						if (err) {
 							console.log("Error event", err);
-							res.status(500).json({
-								ping: channel,
-								message: err.message,
-							});
+							// res.status(500).json({
+							// 	ping: channel,
+							// 	message: err.message,
+							// });
 						}
 
 						changedValue && value && handleSoundStream(value);
 					});
 				});
 
-				res.status(200).json({
-					ping: channel,
-					messge: "The sensor started listening succesfully.",
-				});
+				// res.status(200).json({
+				// 	ping: channel,
+				// 	messge: "The sensor started listening succesfully.",
+				// });
 			} catch (error) {
 				console.log("error", error);
-				res.status(500).json({
-					ping: channel,
-					message: err.message,
-				});
+				// res.status(500).json({
+				// 	ping: channel,
+				// 	message: err.message,
+				// });
 			}
 		};
 
