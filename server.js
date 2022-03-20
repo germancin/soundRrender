@@ -216,6 +216,7 @@ const readInput = (err) => {
 				}
 
 				changedValue && value && handleSoundStream(value);
+				
 			});
 		});
 
