@@ -216,20 +216,20 @@ server.post("/updateVolumneTreshold", (req, res) => {
 
 				if (err) {
 					console.log("Error listening", err);
-					res.status(500).json({
-						ping: channel,
-						message: err,
-					});
+					// res.status(500).json({
+					// 	ping: channel,
+					// 	message: err,
+					// });
 				}
 
 				gpio.on("change", function (channel, changedValue) {
 					gpio.read(channel, function (err, value) {
 						if (err) {
 							console.log("Error event", err);
-							res.status(500).json({
-								ping: channel,
-								message: err.message,
-							});
+							// res.status(500).json({
+							// 	ping: channel,
+							// 	message: err.message,
+							// });
 						}
 
 						changedValue && value && handleSoundStream(value);
@@ -242,10 +242,10 @@ server.post("/updateVolumneTreshold", (req, res) => {
 				});
 			} catch (error) {
 				console.log("error", error);
-				res.status(500).json({
-					ping: channel,
-					message: err.message,
-				});
+				// res.status(500).json({
+				// 	ping: channel,
+				// 	message: err.message,
+				// });
 			}
 		};
 
@@ -322,12 +322,12 @@ server.post("/updateTolerance", (req, res) => {
 		let sounded = false;
 		let toleranTimerOn = false;
 
-		const volumeThresholdRequest = req.body.volumeThreshold || null;
+		const toleranceValueRequest = req.body.tolerance || null;
 
-		console.log("REQUEST:::::", req.body.volumeThreshold || false);
+		console.log("REQUEST:::::", req.body.tolerance || false);
 
-		if (volumeThresholdRequest) {
-			volumeThreshold = volumeThresholdRequest;
+		if (toleranceValueRequest) {
+			toleranceLoud = toleranceValueRequest;
 		}
 
 		const handleSoundStream = (stream) => {
