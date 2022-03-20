@@ -123,8 +123,6 @@ server.get("/listen", (req, res) => {
 		};
 
 		setInterval(function () {
-			// console.log("Current count Stream Values ", streamArray.length);
-
 			if (streamArray.length > volume) {
 				console.log("::::::GETTING  LOUGHT ", streamArray.length);
 				tolerance(streamArray.length);
@@ -150,9 +148,9 @@ server.get("/listen", (req, res) => {
 			let counter = 20
 			let interval = setInterval(function () {
 				counter = counter - 1
+				console.log(" ::: can sound in", counter);
 				if (counter === 0) {
 					clearInterval(interval);
-					console.log(" ::: can sound in", counter);
 					sounded = false;
 				}
 			}, 1000);
