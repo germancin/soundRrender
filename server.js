@@ -310,9 +310,11 @@ server.post("/updateVolumneTreshold", (req, res) => {
 
 });
 
-server.post("/updateTolerance", (req, res) => {
+server.post("/updateSettings", (req, res) => {
 	try {
 		const toleranceValueRequest = req.body.tolerance || null;
+
+		const volumeThresholdRequest = req.body.volumeThreshold || null;
 
 		if (toleranceValueRequest) {
 			toleranceLoud = toleranceValueRequest * 3;
@@ -325,9 +327,8 @@ server.post("/updateTolerance", (req, res) => {
 		// });
 
 		gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
-
 	} catch (error) {
-		console.log(error)
+		console.log(error);
 	}
 });
 

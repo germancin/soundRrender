@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import logo from './logo.svg'
-import { updateVolumeThreshold,updateTolerance } from './actions';
+import { updateSettings } from './actions';
 import './App.css'
 const myStorage = window.localStorage;
 
@@ -22,18 +22,6 @@ function App() {
 		tolerance === 0 && setTolerance( val );
 	}
 
-	const handleThreshold = ( e,action = null ) => {
-		let total = 0;
-		if ( action === 'add' ) total = parseInt( e.target.value ) + 1;
-		if ( action === 'subs' ) total = parseInt( e.target.value ) - 1;
-
-		setVolumeThresholdValue( total );
-		updateVolumeThreshold( total );
-
-		const valTot = myStorage.getItem( 'tolerance' ) || 20;
-		valTot && setTolerance( valTot );
-		valTot && updateTolerance( valTot );
-	}
 
 	const handlerUpdate = () => {
 		// const valTot = myStorage.getItem( 'tolerance' ) || 20;
@@ -43,6 +31,8 @@ function App() {
 		// const valTotal = myStorage.getItem( 'volumeThreshold' ) || 2000;
 		// valTotal && setVolumeThresholdValue( valTotal );
 		// valTotal && updateVolumeThreshold( valTotal );
+
+		updateSettings( tolerance,volumeThresholdValue )
 
 		console.log( volumeThresholdValue,tolerance );
 	}
@@ -57,7 +47,7 @@ function App() {
 						VOLUME THRESHOLD: { volumeThresholdValue }
 					</div>
 
-					<div container direction={ 'row' } justifyContent={ 'center' } className={ 'btn-container' }>
+					<div className={ 'btn-container' }>
 						<input
 							type="range"
 							min={ 100 }
@@ -74,7 +64,7 @@ function App() {
 						TOLERANCE:   { tolerance }
 					</div>
 
-					<div container direction={ 'row' } justifyContent={ 'center' } className={ 'btn-container' }>
+					<div className={ 'btn-container' }>
 						<input
 							type="range"
 							min={ 100 }
