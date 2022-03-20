@@ -64,21 +64,14 @@ function App() {
 
             <input
               type="range"
-              min={ 0 }
+              min={ 100 }
               max={ 1 }
-              step={ 0.02 }
-              value={ volume }
+              step={ 2 }
+              value={ volumeThresholdValue }
               onChange={ event => {
-                setVolume( event.target.valueAsNumber )
+                setVolumeThresholdValue( event.target.valueAsNumber )
               } }
             />
-
-            <button variant="text" value={ volumeThresholdValue } onClick={ ( event ) => handleThreshold( event,'subs' ) }>
-              -
-            </button>
-            <button variant="text" value={ volumeThresholdValue } onClick={ ( event ) => handleThreshold( event,'add' ) }>
-              +
-            </button>
           </div>
 
 
