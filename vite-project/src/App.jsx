@@ -6,6 +6,7 @@ const myStorage = window.localStorage;
 
 function App() {
   const [ count,setCount ] = useState( 0 );
+  const [ volume,setVolume ] = useState( 1 )
   const [ volumeThresholdValue,setVolumeThresholdValue ] = useState( 0 )
   const [ tolerance,setTolerance ] = useState( 0 )
 
@@ -54,6 +55,17 @@ function App() {
           </div>
 
           <div container direction={ 'row' } justifyContent={ 'center' } className={ 'btn-container' }>
+
+            <input
+              type="range"
+              min={ 0 }
+              max={ 1 }
+              step={ 0.02 }
+              value={ volume }
+              onChange={ event => {
+                setVolume( event.target.valueAsNumber )
+              } }
+            />
 
             <button variant="text" value={ volumeThresholdValue } onClick={ ( event ) => handleThreshold( event,'subs' ) }>
               -
