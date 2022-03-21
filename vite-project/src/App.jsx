@@ -43,12 +43,12 @@ function App() {
 					<div className={ 'btn-container' }>
 						<input
 							type="range"
-							min={ 100 }
+							min={ 10 }
 							max={ 10000 }
 							step={ 2 }
 							value={ tolerance }
 							onChange={ event => {
-								setTolerance( event.target.valueAsNumber )
+								setTolerance( event.target.valueAsNumber ); handlerUpdate();
 							} }
 						/>
 					</div>
@@ -60,12 +60,12 @@ function App() {
 					<div className={ 'btn-container' }>
 						<input
 							type="range"
-							min={ 100 }
-							max={ 10000 }
+							min={ 10 }
+							max={ 90000 }
 							step={ 2 }
 							value={ volumeThresholdValue }
 							onChange={ event => {
-								setVolumeThresholdValue( event.target.valueAsNumber )
+								setVolumeThresholdValue( event.target.valueAsNumber ); handlerUpdate();
 							} }
 						/>
 					</div>
