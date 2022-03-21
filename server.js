@@ -14,6 +14,7 @@ let toleranceVal = 0;
 let sounded = false;
 let toleranTimerOn = false;
 let statusOn = false;
+let gpioInstance = false;
 
 server.use(bodyParser.json());
 server.use(cors());
@@ -34,18 +35,18 @@ const readInput = (err) => {
 			console.log("Error Listening.", err);
 		}
 
-		const gg = gpio.on("change", function (channel, changedValue) {
-			gpio.read(channel, function (err, value) {
-				if (err) {
-					console.log("Error event", err);
-				}
+		if (!gpioInstance) {
+			gpioInstance = gpio.on("change", function (channel, changedValue) {
+				gpio.read(channel, function (err, value) {
+					if (err) {
+						console.log("Error event", err);
+					}
 
-				changedValue && value && handleSoundStream(value);
+					changedValue && value && handleSoundStream(value);
+				});
 			});
-		});
+		} 
 
-		console.log("gg:::", gg)
-		
 	} catch (error) {
 		console.log("error", error);
 	}
