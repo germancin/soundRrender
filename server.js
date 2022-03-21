@@ -21,7 +21,7 @@ server.use(cors());
 
 const handleSoundStream = (stream) => {
 	streamArray.push(stream);
-	console.log(streamArray.length);
+	// console.log(streamArray.length);
 };
 
 const readInput = (err) => {
@@ -64,6 +64,7 @@ const tolerance = (value) => {
 };
 
 setInterval(function () {
+	
 	if (streamArray.length > toleranceLoud) {
 
 		console.log("COLLECTING STREAM", streamArray.length);
