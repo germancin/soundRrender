@@ -124,19 +124,21 @@ const assignValues = (reqBody) => {
 		volumeThreshold = toleranceValueRequest * 3;
 	}
 
+	console.log(":UPDATE REQUEST:", req.body);
+	console.log(
+		":volumeThreshold:",
+		toleranceValueRequest,
+		"(times 3)",
+		volumeThreshold
+	);
+
 }
 
 server.post("/updateSettings", (req, res) => {
 	try {
 		assignValues(req.body);
 
-		console.log(":UPDATE REQUEST:", req.body);
-		console.log(
-			":volumeThreshold:",
-			toleranceValueRequest,
-			"(times 3)",
-			volumeThreshold
-		);
+		
 
 		statusOn && gpio.destroy(function () {
 
