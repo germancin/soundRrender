@@ -24,7 +24,7 @@ const handleSoundStream = (stream) => {
 	streamArray.push(stream);
 
 	// console log
-	// streamArray.length > 10 && console.log(streamArray.length);
+	streamArray.length > 10 && console.log(streamArray.length);
 
 };
 
@@ -41,7 +41,6 @@ const readInput = (err) => {
 					if (err) {
 						console.log("Error event", err);
 					}
-					console.log(value);
 					changedValue && value && handleSoundStream(value);
 				});
 			});
@@ -93,12 +92,12 @@ const tolerance = (value) => {
 
 const initialInterval = () => {
 	setInterval(function () {
-		console.log(
-			streamArray.length,
-			">",
-			toleranceLoud,
-			(streamArray.length > toleranceLoud)
-		);
+		// console.log(
+		// 	streamArray.length,
+		// 	">",
+		// 	toleranceLoud,
+		// 	(streamArray.length > toleranceLoud)
+		// );
 
 		if (streamArray.length > toleranceLoud) {
 			console.log("COLLECTING STREAM", streamArray.length);
