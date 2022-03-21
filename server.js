@@ -61,9 +61,9 @@ const tolerance = (value) => {
 	);
 
 	if (toleranceVal > volumeThreshold && !sounded) {
-		const python = spawn("python", ["python/playmp3.py"]);
-
 		gpio.destroy(function () {
+
+			const python = spawn("python", ["python/playmp3.py"]);
 
 			console.log(
 				":::::::::::YOU ARE TALKING TOO HIGH :::::::::",
