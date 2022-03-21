@@ -25,6 +25,7 @@ const handleSoundStream = (stream) => {
 };
 
 const readInput = (err) => {
+	console.log("Start Reading...")
 	try {
 		if (err) {
 			console.log("Error Listening.", err);
