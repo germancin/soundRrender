@@ -48,7 +48,10 @@ function App() {
 							step={ 2 }
 							value={ tolerance }
 							onChange={ event => {
-								setTolerance( event.target.valueAsNumber ); handlerUpdate();
+								setTolerance( event.target.valueAsNumber );
+							} }
+							onMouseUp={ () => {
+								handlerUpdate()
 							} }
 						/>
 					</div>
@@ -65,18 +68,21 @@ function App() {
 							step={ 2 }
 							value={ volumeThresholdValue }
 							onChange={ event => {
-								setVolumeThresholdValue( event.target.valueAsNumber ); handlerUpdate();
+								setVolumeThresholdValue( event.target.valueAsNumber );
+							} }
+							onMouseUp={ () => {
+								handlerUpdate()
 							} }
 						/>
 					</div>
 
 
 
-					<div className="action-container">
+					{/* <div className="action-container">
 						<button onClick={ () => handlerUpdate() }>
 							Update
 						</button>
-					</div>
+					</div> */}
 
 				</div>
 			</div>
