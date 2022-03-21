@@ -111,7 +111,7 @@ const initialInterval = () => {
 
 		streamArray = [];
 
-	}, 1);
+	}, 500);
 }
 
 
