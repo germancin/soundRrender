@@ -113,6 +113,7 @@ const startCounter = () => {
 
 const assignValues = (reqBody) => {
 
+	
 	const toleranceValueRequest = reqBody.tolerance || null;
 	const volumeThresholdRequest = reqBody.volumeThreshold || null;
 
@@ -124,7 +125,7 @@ const assignValues = (reqBody) => {
 		volumeThreshold = toleranceValueRequest * 3;
 	}
 
-	console.log(":UPDATE REQUEST:", req.body);
+	console.log(":UPDATE REQUEST:", reqBody);
 	console.log(
 		":volumeThreshold:",
 		toleranceValueRequest,
