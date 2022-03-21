@@ -19,9 +19,12 @@ server.use(bodyParser.json());
 server.use(cors());
 
 const handleSoundStream = (stream) => {
+
 	streamArray.push(stream);
+
 	// console log
-	streamArray.length > 10 && console.log(streamArray.length);
+	// streamArray.length > 10 && console.log(streamArray.length);
+
 };
 
 const readInput = (err) => {
