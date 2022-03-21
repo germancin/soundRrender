@@ -54,7 +54,7 @@ function App() {
 					</div>
 
 					<div>
-						VOLUME THRESHOLD: { volumeThresholdValue }
+						VOLUME THRESHOLD: { volumeThresholdValue } Sound.
 					</div>
 
 					<div className={ 'btn-container' }>

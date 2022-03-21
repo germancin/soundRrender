@@ -71,9 +71,7 @@ setInterval(function () {
 		tolerance(streamArray.length);
 
 		if (!toleranTimerOn) {
-			
 			startToleranceTimer();
-			
 		}
 	}
 
