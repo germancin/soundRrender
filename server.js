@@ -32,7 +32,7 @@ const readInput = (err) => {
 	console.log("Start Reading...")
 	try {
 		if (err) {
-			console.log("Error Listening.", err);
+			console.log("Error Listening.", err); 
 		}
 
 		if (!gpioInstance) {
@@ -78,7 +78,6 @@ const tolerance = (value) => {
 };
 
 const initialInterval = () => {
-
 	setInterval(function () {
 		console.log(
 			streamArray.length,
@@ -99,7 +98,6 @@ const initialInterval = () => {
 		streamArray = [];
 
 	}, 3000);
-
 }
 
 
@@ -164,12 +162,10 @@ server.post("/updateSettings", (req, res) => {
 
 			console.log("All pins unexported");
 
-			setTimeout(() => {
-				console.log("Start Reading again....")
-				assignValues(req.body);
-				gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
-				return;
-			}, 2000)
+			console.log("Start Reading again....");
+			assignValues(req.body);
+			gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
+			return;
 
 		});
 
