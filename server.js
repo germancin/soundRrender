@@ -283,8 +283,6 @@ server.post("/updateSettings", (req, res) => {
 		const toleranceValueRequest = req.body.tolerance || null;
 		const volumeThresholdRequest = req.body.volumeThreshold || null;
 
-		
-
 		if (toleranceValueRequest) {
 			toleranceLoud = toleranceValueRequest * 3;
 		}
@@ -302,7 +300,7 @@ server.post("/updateSettings", (req, res) => {
 		gpio.setup( channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput)
 
 	} catch (error) {
-		console.log(error);
+		console.log("WE HAVE AN ERROR HIUSTON", error.message);
 	}
 });
 
