@@ -163,18 +163,20 @@ server.post("/updateSettings", (req, res) => {
 		statusOn && gpio.destroy(function () {
 
 			console.log("All pins unexported");
+
 			setTimeout(() => {
 				console.log("Start Reading again....")
 				assignValues(req.body);
 				gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
-			}, 5000)
+			}, 2000)
 
 		});
 
 		if (!statusOn) {
 			statusOn = true;
 			gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
-			initialInterval()
+			initialInterval();
+			return;
 		}
 
 		res.status(200).json({
