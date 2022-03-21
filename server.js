@@ -134,8 +134,8 @@ const assignValues = (reqBody) => {
 		toleranceLoud = toleranceValueRequest;
 	}
 
-	if (volumeThresholdRequest && toleranceValueRequest) {
-		volumeThreshold = toleranceValueRequest * 3;
+	if (volumeThresholdRequest) {
+		volumeThreshold = volumeThresholdRequest;
 	}
 
 	toleranceVal = 0;
