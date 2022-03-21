@@ -74,7 +74,7 @@ const tolerance = (value) => {
 			console.log("All pins unexported");
 			console.log("Start Reading again....");
 
-			assignValues(req.body);
+			
 			gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
 			sounded = true;
