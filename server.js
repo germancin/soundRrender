@@ -241,9 +241,11 @@ const tolerance = (value) => {
 
 setInterval(function () {
 	if (streamArray.length > toleranceLoud) {
+
+		console.log("COLLECTING STREAM", streamArray.length);
+		tolerance(streamArray.length);
+
 		if (!toleranTimerOn) {
-			console.log("COLLECTING STREAM", streamArray.length);
-			tolerance(streamArray.length);
 			startToleranceTimer();
 		}
 	}
