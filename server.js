@@ -305,6 +305,16 @@ server.post("/updateSettings", (req, res) => {
 		// });
 
 		// gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
+
+		const gpioInstance = gpio.setup(
+			channel,
+			gpio.DIR_IN,
+			gpio.EDGE_BOTH,
+			readInput
+		);
+
+		console.log("::gpioInstance::", gpioInstance);
+
 	} catch (error) {
 		console.log(error);
 	}
