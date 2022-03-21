@@ -21,7 +21,10 @@ server.use(cors());
 
 const handleSoundStream = (stream) => {
 	streamArray.push(stream);
-	// console.log(streamArray.length);
+
+	// console log
+	streamArray.length > 10 && console.log(streamArray.length);
+
 };
 
 const readInput = (err) => {
@@ -115,15 +118,20 @@ server.post("/updateSettings", (req, res) => {
 		const volumeThresholdRequest = req.body.volumeThreshold || null;
 
 		if (toleranceValueRequest) {
-			toleranceLoud = toleranceValueRequest * 3;
+			toleranceLoud = toleranceValueRequest ;
 		}
 
-		if (volumeThresholdRequest) {
-			volumeThreshold = volumeThresholdRequest;
+		if (volumeThresholdRequest && toleranceValueRequest) {
+			volumeThreshold = toleranceValueRequest * 3;
 		}
 
 		console.log(":UPDATE REQUEST:", req.body);
-		console.log(":Tolerance:",toleranceValueRequest,"(times 3)", toleranceLoud);
+		console.log(
+			":volumeThreshold:",
+			toleranceValueRequest,
+			"(times 3)",
+			volumeThreshold
+		);
 
 		statusOn && gpio.destroy(function () {
 			console.log("All pins unexported");

@@ -24,13 +24,6 @@ function App() {
 
 
 	const handlerUpdate = () => {
-		// const valTot = myStorage.getItem( 'tolerance' ) || 20;
-		// valTot && setTolerance( valTot );
-		// valTot && updateTolerance( valTot );
-
-		// const valTotal = myStorage.getItem( 'volumeThreshold' ) || 2000;
-		// valTotal && setVolumeThresholdValue( valTotal );
-		// valTotal && updateVolumeThreshold( valTotal );
 
 		updateSettings( tolerance,volumeThresholdValue )
 
@@ -42,6 +35,23 @@ function App() {
 			<div className="App-header">
 				<img src={ logo } className="App-logo" alt="logo" />
 				<div>
+
+					<div className='section'>
+						TOLERANCE:   { tolerance }
+					</div>
+
+					<div className={ 'btn-container' }>
+						<input
+							type="range"
+							min={ 100 }
+							max={ 10000 }
+							step={ 2 }
+							value={ tolerance }
+							onChange={ event => {
+								setTolerance( event.target.valueAsNumber )
+							} }
+						/>
+					</div>
 
 					<div>
 						VOLUME THRESHOLD: { volumeThresholdValue }
@@ -60,22 +70,7 @@ function App() {
 						/>
 					</div>
 
-					<div className='section'>
-						TOLERANCE:   { tolerance }
-					</div>
 
-					<div className={ 'btn-container' }>
-						<input
-							type="range"
-							min={ 100 }
-							max={ 10000 }
-							step={ 2 }
-							value={ tolerance }
-							onChange={ event => {
-								setTolerance( event.target.valueAsNumber )
-							} }
-						/>
-					</div>
 
 					<div className="action-container">
 						<button onClick={ () => handlerUpdate() }>
