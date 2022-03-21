@@ -293,29 +293,13 @@ server.post("/updateSettings", (req, res) => {
 			volumeThreshold = volumeThresholdRequest;
 		}
 
-		console.log(
-			"::::::UPDATE SETTINGS:::",
-			toleranceValueRequest,
-			"(times 3)",
-			toleranceLoud
-		);
+		console.log("::::::UPDATE SETTINGS:::",toleranceValueRequest,"(times 3)",toleranceLoud);
 
 		// gpio.destroy(function () {
 		// 	console.log("All pins unexported");
 		// });
 
-		// gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
-
-		const gpioInstance = gpio.setup(
-			channel,
-			gpio.DIR_IN,
-			gpio.EDGE_BOTH,
-			readInput
-		).then(response => {
-			console.log("then response", response)
-		});
-
-		console.log("::gpioInstance::", gpioInstance);
+		gpio.setup( channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput)
 
 	} catch (error) {
 		console.log(error);
