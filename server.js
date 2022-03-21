@@ -34,7 +34,7 @@ const readInput = (err) => {
 			console.log("Error Listening.", err);
 		}
 
-		gpio.on("change", function (channel, changedValue) {
+		const gg = gpio.on("change", function (channel, changedValue) {
 			gpio.read(channel, function (err, value) {
 				if (err) {
 					console.log("Error event", err);
@@ -43,6 +43,9 @@ const readInput = (err) => {
 				changedValue && value && handleSoundStream(value);
 			});
 		});
+
+		console.log("gg:::", gg)
+		
 	} catch (error) {
 		console.log("error", error);
 	}
@@ -95,7 +98,7 @@ const initialInterval = () => {
 		streamArray = [];
 
 	}, 3000);
-	
+
 }
 
 
