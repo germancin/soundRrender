@@ -293,7 +293,12 @@ server.post("/updateSettings", (req, res) => {
 			volumeThreshold = volumeThresholdRequest;
 		}
 
-		console.log("::::::UPDATE SETTINGS:::", toleranceLoud);
+		console.log(
+			"::::::UPDATE SETTINGS:::",
+			toleranceValueRequest,
+			"(times 3)",
+			toleranceLoud
+		);
 
 		// gpio.destroy(function () {
 		// 	console.log("All pins unexported");
