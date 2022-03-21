@@ -111,18 +111,24 @@ const startCounter = () => {
 	}, 1000);
 };
 
+const assignValues = (reqBody) => {
+
+	const toleranceValueRequest = reqBody.tolerance || null;
+	const volumeThresholdRequest = reqBody.volumeThreshold || null;
+
+	if (toleranceValueRequest) {
+		toleranceLoud = toleranceValueRequest;
+	}
+
+	if (volumeThresholdRequest && toleranceValueRequest) {
+		volumeThreshold = toleranceValueRequest * 3;
+	}
+
+}
+
 server.post("/updateSettings", (req, res) => {
 	try {
-		const toleranceValueRequest = req.body.tolerance || null;
-		const volumeThresholdRequest = req.body.volumeThreshold || null;
-
-		if (toleranceValueRequest) {
-			toleranceLoud = toleranceValueRequest ;
-		}
-
-		if (volumeThresholdRequest && toleranceValueRequest) {
-			volumeThreshold = toleranceValueRequest * 3;
-		}
+		assignValues(req.body);
 
 		console.log(":UPDATE REQUEST:", req.body);
 		console.log(
@@ -137,8 +143,10 @@ server.post("/updateSettings", (req, res) => {
 			console.log("All pins unexported");
 			setTimeout(() => {
 				console.log("Start Reading again....")
+				assignValues(req.body);
 				gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 			}, 5000)
+
 		});
 
 		if (!statusOn) {
