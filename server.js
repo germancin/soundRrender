@@ -69,6 +69,13 @@ const tolerance = (value) => {
 
 setInterval(function () {
 
+	console.log(
+		streamArray.length,
+		">",
+		toleranceLoud,
+		(streamArray.length > toleranceLoud)
+	);
+	
 	if (streamArray.length > toleranceLoud) {
 		console.log("COLLECTING STREAM", streamArray.length);
 		tolerance(streamArray.length);
