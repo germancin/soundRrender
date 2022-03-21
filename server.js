@@ -41,7 +41,7 @@ const readInput = (err) => {
 					if (err) {
 						console.log("Error event", err);
 					}
-
+					console.log(value);
 					changedValue && value && handleSoundStream(value);
 				});
 			});
