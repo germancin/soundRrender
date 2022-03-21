@@ -73,27 +73,31 @@ const tolerance = (value) => {
 	}
 };
 
-setInterval(function () {
+const initialInterval = () => {
 
-	console.log(
-		streamArray.length,
-		">",
-		toleranceLoud,
-		(streamArray.length > toleranceLoud)
-	);
+	setInterval(function () {
+		console.log(
+			streamArray.length,
+			">",
+			toleranceLoud,
+			(streamArray.length > toleranceLoud)
+		);
 
-	if (streamArray.length > toleranceLoud) {
-		console.log("COLLECTING STREAM", streamArray.length);
-		tolerance(streamArray.length);
+		if (streamArray.length > toleranceLoud) {
+			console.log("COLLECTING STREAM", streamArray.length);
+			tolerance(streamArray.length);
 
-		if (!toleranTimerOn) {
-			startToleranceTimer();
+			if (!toleranTimerOn) {
+				startToleranceTimer();
+			}
 		}
-	}
 
-	streamArray = [];
+		streamArray = [];
 
-}, 3000);
+	}, 3000);
+	
+}
+
 
 const startToleranceTimer = () => {
 	let counter = 10;
@@ -125,8 +129,6 @@ const startCounter = () => {
 };
 
 const assignValues = (reqBody) => {
-
-
 	const toleranceValueRequest = reqBody.tolerance || null;
 	const volumeThresholdRequest = reqBody.volumeThreshold || null;
 
@@ -154,8 +156,6 @@ server.post("/updateSettings", (req, res) => {
 	try {
 		assignValues(req.body);
 
-		
-
 		statusOn && gpio.destroy(function () {
 
 			console.log("All pins unexported");
@@ -170,6 +170,7 @@ server.post("/updateSettings", (req, res) => {
 		if (!statusOn) {
 			statusOn = true;
 			gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
+			initialInterval()
 		}
 
 		res.status(200).json({
