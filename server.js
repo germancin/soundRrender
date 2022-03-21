@@ -249,6 +249,7 @@ setInterval(function () {
 	}
 
 	streamArray = [];
+
 }, 3000);
 
 const startToleranceTimer = () => {
