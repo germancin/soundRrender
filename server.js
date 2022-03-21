@@ -51,12 +51,18 @@ const readInput = (err) => {
 const tolerance = (value) => {
 	toleranceVal = toleranceVal + value;
 
-	console.log("WHAT DO WEHAVE", volumeThreshold);
+	console.log(
+		"toleranceVal > volumeThreshold",
+		(toleranceVal > volumeThreshold)
+	);
 
 	if (toleranceVal > volumeThreshold && !sounded) {
 		const python = spawn("python", ["python/playmp3.py"]);
 
-		console.log( ":::::::::::YOU ARE TALKING TOO HIGH :::::::::", toleranceVal );
+		console.log(
+			":::::::::::YOU ARE TALKING TOO HIGH :::::::::",
+			toleranceVal , volumeThreshold
+		);
 
 		sounded = true;
 		toleranceVal = 0;
@@ -75,7 +81,7 @@ setInterval(function () {
 		toleranceLoud,
 		(streamArray.length > toleranceLoud)
 	);
-	
+
 	if (streamArray.length > toleranceLoud) {
 		console.log("COLLECTING STREAM", streamArray.length);
 		tolerance(streamArray.length);
