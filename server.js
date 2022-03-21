@@ -283,7 +283,7 @@ server.post("/updateSettings", (req, res) => {
 		const toleranceValueRequest = req.body.tolerance || null;
 		const volumeThresholdRequest = req.body.volumeThreshold || null;
 
-		console.log("UPDATE SETTING:::::::::", req.body);
+		
 
 		if (toleranceValueRequest) {
 			toleranceLoud = toleranceValueRequest * 3;
@@ -292,8 +292,8 @@ server.post("/updateSettings", (req, res) => {
 		if (volumeThresholdRequest) {
 			volumeThreshold = volumeThresholdRequest;
 		}
-
-		console.log("::::::UPDATE SETTINGS:::",toleranceValueRequest,"(times 3)",toleranceLoud);
+		console.log(":UPDATE REQUEST:", req.body);
+		console.log(":Tolerance:",toleranceValueRequest,"(times 3)", toleranceLoud);
 
 		// gpio.destroy(function () {
 		// 	console.log("All pins unexported");
