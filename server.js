@@ -168,6 +168,7 @@ server.post("/updateSettings", (req, res) => {
 				console.log("Start Reading again....")
 				assignValues(req.body);
 				gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
+				return;
 			}, 2000)
 
 		});
