@@ -64,7 +64,7 @@ const tolerance = (value) => {
 };
 
 setInterval(function () {
-	
+
 	if (streamArray.length > toleranceLoud) {
 
 		console.log("COLLECTING STREAM", streamArray.length);
@@ -120,14 +120,20 @@ server.post("/updateSettings", (req, res) => {
 		if (volumeThresholdRequest) {
 			volumeThreshold = volumeThresholdRequest;
 		}
+
 		console.log(":UPDATE REQUEST:", req.body);
 		console.log(":Tolerance:",toleranceValueRequest,"(times 3)", toleranceLoud);
 
 		statusOn && gpio.destroy(function () {
 			console.log("All pins unexported");
+			
+			gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 		});
 
-		!statusOn && gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
+		if (!statusOn) {
+			statusOn = true;
+			gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
+		}
 
 		res.status(200).json({
 			message: "Update!",
