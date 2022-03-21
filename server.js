@@ -18,13 +18,10 @@ let statusOn = false;
 server.use(bodyParser.json());
 server.use(cors());
 
-
 const handleSoundStream = (stream) => {
 	streamArray.push(stream);
-
 	// console log
 	streamArray.length > 10 && console.log(streamArray.length);
-
 };
 
 const readInput = (err) => {
@@ -70,12 +67,13 @@ const tolerance = (value) => {
 setInterval(function () {
 
 	if (streamArray.length > toleranceLoud) {
-
 		console.log("COLLECTING STREAM", streamArray.length);
-		
+		tolerance(streamArray.length);
+
 		if (!toleranTimerOn) {
-			tolerance(streamArray.length);
+			
 			startToleranceTimer();
+			
 		}
 	}
 
