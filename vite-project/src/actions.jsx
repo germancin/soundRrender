@@ -3,7 +3,8 @@ const myStorage = window.localStorage;
 
 export async function updateSettings( tolerance,volumeThreshold ) {
 
-	myStorage.setItem( 'volumeThreshold',value );
+	myStorage.setItem( 'volumeThreshold',volumeThreshold );
+	myStorage.setItem( 'tolerance',tolerance );
 
 	var config = {
 		method: 'post',
