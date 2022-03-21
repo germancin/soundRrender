@@ -311,7 +311,9 @@ server.post("/updateSettings", (req, res) => {
 			gpio.DIR_IN,
 			gpio.EDGE_BOTH,
 			readInput
-		);
+		).then(response => {
+			console.log("then response", response)
+		});
 
 		console.log("::gpioInstance::", gpioInstance);
 
