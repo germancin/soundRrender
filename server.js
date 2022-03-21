@@ -299,6 +299,11 @@ server.post("/updateSettings", (req, res) => {
 
 		gpio.setup( channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput)
 
+		res.status(200).json({
+			message: "Update!",
+			payload: req.body,
+		});
+
 	} catch (error) {
 		console.log("WE HAVE AN ERROR HIUSTON", error.message);
 	}
