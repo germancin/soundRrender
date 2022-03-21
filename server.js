@@ -61,29 +61,30 @@ const tolerance = (value) => {
 	);
 
 	if (toleranceVal > volumeThreshold && !sounded) {
-		gpio.destroy(function () {
+		try{
+			gpio.destroy(function () {
+				const python = spawn("python", ["python/playmp3.py"]);
 
-			const python = spawn("python", ["python/playmp3.py"]);
+				console.log(
+					":::::::::::YOU ARE TALKING TOO HIGH :::::::::",
+					toleranceVal,
+					volumeThreshold
+				);
 
-			console.log(
-				":::::::::::YOU ARE TALKING TOO HIGH :::::::::",
-				toleranceVal,
-				volumeThreshold
-			);
+				console.log("All pins unexported");
+				console.log("Start Reading again....");
 
-			console.log("All pins unexported");
-			console.log("Start Reading again....");
+				gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
 
-			
-			gpio.setup(channel, gpio.DIR_IN, gpio.EDGE_BOTH, readInput);
+				sounded = true;
+				toleranceVal = 0;
+				startCounter();
+				// return;
+			});
+		}catch(error){
+			console.log("Error::")
+		}
 
-			sounded = true;
-			toleranceVal = 0;
-			startCounter();
-			// return;
-		});
-
-		
 
 	} else {
 		console.log("Ydoundede false??", sounded);
