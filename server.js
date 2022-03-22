@@ -24,7 +24,7 @@ const handleSoundStream = (stream) => {
 	streamArray.push(stream);
 
 	// console log
-	streamArray.length > 10 && console.log(streamArray.length);
+	streamArray.length > 10 && console.log(streamArray.length / 128);
 
 };
 
