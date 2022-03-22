@@ -99,13 +99,19 @@ const initialInterval = () => {
 		// 	(streamArray.length > toleranceLoud)
 		// );
 
-		if (streamArray.length > toleranceLoud) {
-			console.log("COLLECTING STREAM", streamArray.length);
-			tolerance(streamArray.length);
+		if(streamArray.length > volumeThreshold) {
+			setTimeout(() => {
+				spawn("python", ["python/playmp3.py"]);
+			}, 5000)
+		}
 
-			if (!toleranTimerOn) {
-				startToleranceTimer();
-			}
+		if (streamArray.length > toleranceLoud) {
+			// console.log("COLLECTING STREAM", streamArray.length);
+			// tolerance(streamArray.length);
+
+			// if (!toleranTimerOn) {
+			// 	startToleranceTimer();
+			// }
 		}
 
 		streamArray = [];
