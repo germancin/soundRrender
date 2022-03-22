@@ -22,7 +22,7 @@ server.use(cors());
 const handleSoundStream = (stream) => {
 	streamArray.push(stream);
 	// console log
-	streamArray.length > 10 && console.log(streamArray.length + 83 / 11.003 );
+	console.log(parseInt(streamArray.length + 83 / 11.003),  " => " ,streamArray.length);
 };
 
 const readInput = (err) => {
