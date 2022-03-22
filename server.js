@@ -22,7 +22,8 @@ server.use(cors());
 const handleSoundStream = (stream) => {
 	streamArray.push(stream);
 	// console log
-	console.log(parseInt(streamArray.length + 83 / 11.003),  " => " ,streamArray.length);
+	// console.log(parseInt(streamArray.length + 83 / 11.003),  " => " ,streamArray.length);
+	let vol = parseInt(streamArray.length + 83 / 11.003);
 };
 
 const readInput = (err) => {
@@ -113,6 +114,7 @@ const initialInterval = () => {
 		}
 
 		tolerance(streamArray.length);
+		console.log(vol);
 
 		streamArray = [];
 
