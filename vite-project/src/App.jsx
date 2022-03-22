@@ -64,7 +64,7 @@ function App() {
 						<input
 							type="range"
 							min={ 10 }
-							max={ 90000 }
+							max={ 5000 }
 							step={ 2 }
 							value={ volumeThresholdValue }
 							onChange={ event => {
