@@ -20,12 +20,9 @@ server.use(bodyParser.json());
 server.use(cors());
 
 const handleSoundStream = (stream) => {
-
 	streamArray.push(stream);
-
 	// console log
-	streamArray.length > 10 && console.log(streamArray.length / 128);
-
+	streamArray.length > 10 && console.log(streamArray.length);
 };
 
 const readInput = (err) => {
@@ -56,7 +53,8 @@ const tolerance = (value) => {
 
 	console.log(
 		"toleranceVal > volumeThreshold",
-		(toleranceVal > volumeThreshold)
+		toleranceVal > volumeThreshold,
+		toleranceVal
 	);
 
 	if (toleranceVal > volumeThreshold && !sounded) {
@@ -113,6 +111,8 @@ const initialInterval = () => {
 			// 	startToleranceTimer();
 			// }
 		}
+
+		tolerance(streamArray.length);
 
 		streamArray = [];
 
