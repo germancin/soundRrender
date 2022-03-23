@@ -129,7 +129,7 @@ const startToleranceTimer = () => {
 };
 
 const startCounter = () => {
-	let counter = 20;
+	let counter = 5;
 	let interval = setInterval(function () {
 		counter = counter - 1;
 		console.log(" ::: can sound in", counter);
