@@ -26,11 +26,13 @@ while True:  # Loop indefinitely
 
     if time_clicked_on < time_clicked_off:
         time_clicked_on = time.time()
-        print('Button Pressed - LED ON-', number)
+        print('Button Pressed - LED ON-', number,
+              time_clicked_on, time_clicked_off)
         GPIO.output(ledPin, GPIO.HIGH)
     else:
         time_clicked_off = time.time()
-        print('Button Pressed - LED OFF', number)
+        print('Button Pressed - LED OFF', number,
+              time_clicked_on, time_clicked_off)
         GPIO.output(ledPin, GPIO.LOW)
 
     # GPIO.output(ledPin, GPIO.HIGH)  # Turn led on - FUNCTION TO TURN THE LED ON
