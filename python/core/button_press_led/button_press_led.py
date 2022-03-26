@@ -16,11 +16,20 @@ GPIO.output(ledPin, GPIO.LOW)  # initially turn off the led
 GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 while True:  # Loop indefinitely
-    GPIO.wait_for_edge(buttonPin, GPIO.FALLING)  # Button was pressed
-    print('Button Pressed', clickCounter)  # Display button pressed
-    clickCounter = clickCounter + 1
-    GPIO.output(ledPin, GPIO.HIGH)  # Turn led on
-    GPIO.wait_for_edge(buttonPin, GPIO.RISING)  # Button was released
-    GPIO.output(ledPin, GPIO.LOW)  # Turn led off
+    # Button was pressed - CLICK ACTION
+    GPIO.wait_for_edge(buttonPin, GPIO.FALLING)
+    number = clickCounter + 1
+    if clickCounter % number == 0:
+        print('Button Pressed - LED ON', number)
+        GPIO.output(ledPin, GPIO.HIGH)
+    else:
+        print('Button Pressed - LED OFF', number)
+        GPIO.output(ledPin, GPIO.LOW)
+
+    clickCounter = number
+    # GPIO.output(ledPin, GPIO.HIGH)  # Turn led on - FUNCTION TO TURN THE LED ON
+    # Button was released - ACTION OF BUTTON RELEASE
+    # GPIO.wait_for_edge(buttonPin, GPIO.RISING)
+    # GPIO.output(ledPin, GPIO.LOW)  # Turn led off
 
 GPIO.cleanup()  # Clean up when exiting the program
