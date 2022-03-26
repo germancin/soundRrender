@@ -26,7 +26,7 @@ while True:  # Loop indefinitely
     if clickCounter % 2 == 0:
         time_clicked_on = time.time()
         print('Button Pressed - LED ON-', number,
-              time_clicked_on, time_clicked_off - time_clicked_on)
+              time_clicked_on, time_clicked_on - time_clicked_off)
         GPIO.output(ledPin, GPIO.HIGH)
     else:
         time_clicked_off = time.time()
