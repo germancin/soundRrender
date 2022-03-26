@@ -20,6 +20,7 @@ GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 while True:  # Loop indefinitely
     # Button was pressed - CLICK ACTION
     GPIO.wait_for_edge(buttonPin, GPIO.FALLING)
+    print('Butt')
     number = clickCounter + 1
     clickCounter = number
     loop_time = time.time()
