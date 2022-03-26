@@ -7,7 +7,7 @@ GPIO.setwarnings(False)
 ledPin = 11
 buttonPin = 16  # pin 16 is connected to the button - other button pin is connected to gnd - pin 14
 clickCounter = 0
-time_clicked_off = time.time()
+time_clicked_off = time.time() + 1
 time_clicked_on = time.time()
 GPIO.setmode(GPIO.BOARD)  # Numbers GPIOs by physical location
 
@@ -23,18 +23,15 @@ while True:  # Loop indefinitely
     number = clickCounter + 1
     clickCounter = number
     loop_time = time.time()
-    if clickCounter % 2 == 0:
+
+    if time_clicked_on < time_clicked_off:
         time_clicked_on = time.time()
-        print('Button Pressed - LED ON-', number,
-              time_clicked_on, time_clicked_on - time_clicked_off)
-        if time_clicked_on - time_clicked_off > 1:
-            GPIO.output(ledPin, GPIO.HIGH)
+        print('Button Pressed - LED ON-', number)
+        GPIO.output(ledPin, GPIO.HIGH)
     else:
         time_clicked_off = time.time()
-        print('Button Pressed - LED OFF', number,
-              time_clicked_off, time_clicked_off - time_clicked_on)
-        if time_clicked_off - time_clicked_on > 1:
-            GPIO.output(ledPin, GPIO.LOW)
+        print('Button Pressed - LED OFF', number)
+        GPIO.output(ledPin, GPIO.LOW)
 
     # GPIO.output(ledPin, GPIO.HIGH)  # Turn led on - FUNCTION TO TURN THE LED ON
     # Button was released - ACTION OF BUTTON RELEASE
