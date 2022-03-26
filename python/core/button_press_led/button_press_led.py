@@ -38,6 +38,25 @@ while True:  # Loop indefinitely
         GPIO.wait_for_edge(buttonPin, GPIO.RISING)
         GPIO.output(ledPin, GPIO.LOW)
 
+    GPIO.wait_for_edge(buttonPin, GPIO.RISING)
+    print('Butt')
+    number = clickCounter + 1
+    clickCounter = number
+    loop_time = time.time()
+
+    if time_clicked_on < time_clicked_off:
+        time_clicked_on = time.time()
+        print('Button Pressed - LED ON-', number,
+              time_clicked_on, time_clicked_off)
+        GPIO.wait_for_edge(buttonPin, GPIO.FALLING)
+        GPIO.output(ledPin, GPIO.HIGH)
+    else:
+        time_clicked_off = time.time()
+        print('Button Pressed - LED OFF', number,
+              time_clicked_on, time_clicked_off)
+        GPIO.wait_for_edge(buttonPin, GPIO.RISING)
+        GPIO.output(ledPin, GPIO.LOW)
+
     # GPIO.output(ledPin, GPIO.HIGH)  # Turn led on - FUNCTION TO TURN THE LED ON
     # Button was released - ACTION OF BUTTON RELEASE
     # GPIO.wait_for_edge(buttonPin, GPIO.RISING)
