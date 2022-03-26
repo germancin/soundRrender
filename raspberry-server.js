@@ -17,13 +17,12 @@ server.get("/", (req, res) => {
 	try {
 		var dataToSend;
 		// spawn new child process to call the python script
-		const python = spawn("python", ["python/hello.py"]);
+		const python = spawn("python", ["python/core/blink_led/blink_led.py"]);
 
 		// collect data from script
 		python.stdout.on("data", function (data) {
 			console.log("Pipe data from python script ...");
 			dataToSend = data.toString();
-
 			console.log("Python response:::", dataToSend);
 		});
 
