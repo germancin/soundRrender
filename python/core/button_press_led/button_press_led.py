@@ -7,7 +7,7 @@ GPIO.setwarnings(False)
 ledPin = 11
 buttonPin = 16  # pin 16 is connected to the button - other button pin is connected to gnd - pin 14
 clickCounter = 0
-current_time = time.time()
+time_clicked = time.time()
 GPIO.setmode(GPIO.BOARD)  # Numbers GPIOs by physical location
 
 GPIO.setup(ledPin, GPIO.OUT)  # set ledPin's mode as output
